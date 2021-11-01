@@ -1,8 +1,8 @@
 # The influence of women in time and domain
 
 ## Abstract
-Throughout this project we are looking into where women are given voices and the freedom to speak but also about what the speak. The goal is to analyze trends about which newspapers but more generally which countries quote a similar proportion of men and women and additionally in which fields they are quotes, may it be politics, sports or culture. In recent years, the feminist movement has evolved and continues to do so, for equal representation, pay and respect.
-Studies have shown that representation is important and we are interested to see if the news allow all children to associate with a figure.
+Throughout this project we are looking into where women are given voices and the freedom to speak but also about what they speak. The goal is to analyze trends about which newspapers but more generally which countries quote a similar proportion of men and women and additionally in which fields they are quoted, may it be politics, sports, culture or others. In recent years, the feminist movement has evolved and continues to do so, for equal representation, pay and respect.
+Studies have shown that representation is important for inspiration and we are interested to see if the news allow all children to associate with a figure regardless of their gender
 
 ## Research questions
 
