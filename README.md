@@ -18,6 +18,7 @@ We wish to answer the following questions:
 Extra:
 
 - Are men more likely to be quoted in a highly respected journal --> define highly respected
+- Is there a tendency in each category for a men to hold longer quotes than women
 
 ## Additional datasets
 
