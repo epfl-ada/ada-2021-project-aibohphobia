@@ -2,17 +2,18 @@
 
 ## Abstract
 Throughout this project we are looking into where women are given voices and the freedom to speak but also about what they speak. The goal is to analyze trends about which newspapers but more generally which countries quote a similar proportion of men and women and additionally in which fields they are quoted, may it be politics, sports, culture or others. In recent years, the feminist movement has evolved and continues to do so, for equal representation, pay and respect.
-Studies have shown that representation is important for inspiration and we are interested to see if the news allow all children to associate with a figure regardless of their gender
+Studies have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to see whether media coverage gives the same possibilities to all voices, regardless if gender.
+
 
 ## Research questions
 
-We wish to answer the following questions:
+This study aims at answering the following questions:
  
-- Are women or men more quoted in journals
-- aka: Is the representation equal between men and women in journals 
-- How does the distribution of quotes based on gender vary across countries 
- - How does the distribution of quotes based on gender vary across 
-- If men have a higher tendency to be quoted, in which domains is it the case and by how much 
+- Are women or men more quoted in journals/Is the representation equal between men and women in journals?
+- How does the distribution of quotes based on gender vary across countries?
+- How does the distribution of quotes based on gender vary across? 
+- If men have a higher tendency to be quoted, in which domains is it the case and by how much?
+- How does the distribution of quotes between genders evolve in time, geographically and themaitcally?
 
 
 Extra:
