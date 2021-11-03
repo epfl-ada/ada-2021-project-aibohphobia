@@ -1,11 +1,13 @@
 # The influence of women in time and domain
 TODO: CHange title for "more catch" #Lisa
 TODO: Change women to female and men to male  
-Throughout this project we are looking into where women are given voices and the freedom to speak but also about what they speak. The goal is to analyze trends about which newspapers but more generally analyse the proportion of quotes told by men and women and additionally in which fields they are quoted, may it be politics, sports, culture or others. In recent years, the feminist movement has evolved and continues to do so, for equal representation, pay and respect.
-Studies have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to see whether media coverage gives the same possibilities to all voices, regardless of gender.
+
+Women’s full and equal participation in all facets of society is a fundamental human right. Yet, around the world, from politics to entertainment to the workplace, women and girls are largely underrepresented. Indeed, women have historically been underrepresented in roles within mainstream media. In recent years, the feminist movement has evolved and continues to do so, for equal representation, pay and respect. Studies (*find source?*) have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to see whether media coverage gives the same possibilities to all voices, regardless of gender.
+Throughout this project we want to see where females are given a voice and the freedom to speak (*not sure we should say freedom, because will we check that?*) but also the topics that they speak about. The goal is to analyze trends about which media sources quote females and analyse their proportion of published quotations in comparison to males. Additionally, certain domains and subjects are known to have a gender gap historically and culturally. This study is therefore interested in understanding which fields present differences between genders, may it be politics, sports, culture or others. 
+
+
 
 TODO:Be inspired  
-
 TODO: Careful when talking about journal, state media instead for now 
 
 
