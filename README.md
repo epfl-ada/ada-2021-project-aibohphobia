@@ -2,8 +2,8 @@
 TODO: CHange title for "more catch" #Lisa
 TODO: Change women to female and men to male  
 
-Women’s full and equal participation in all facets of society is a fundamental human right. Yet, around the world, from politics to entertainment to the workplace, women and girls are largely underrepresented. Indeed, women have historically been underrepresented in roles within mainstream media. In recent years, the feminist movement has evolved and continues to do so, for equal representation, pay and respect. Studies (*find source?*) have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to see whether media coverage gives the same possibilities to all voices, regardless of gender.
-Throughout this project we want to see where females are given a voice and the freedom to speak (*not sure we should say freedom, because will we check that?*) but also the topics that they speak about. The goal is to analyze trends about which media sources quote females and analyse their proportion of published quotations in comparison to males. Additionally, certain domains and subjects are known to have a gender gap historically and culturally. This study is therefore interested in understanding which fields present differences between genders, may it be politics, sports, culture or others. 
+Female’s full and equal participation in all facets of society is a fundamental human right. Yet, around the world, from politics to entertainment to the workplace, females are largely underrepresented. Indeed, females have historically been underrepresented in roles within mainstream media. In recent years, the feminist movement has evolved and continues to do so, for equal representation, pay and respect. Studies (*find source?*) have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to see whether media coverage gives the same possibilities to all voices, regardless of gender.
+Throughout this project we want to see where females are given a voice to express themselves but also the topics that they speak about. The goal is to analyze trends about which media sources quote females and analyse their proportion of published quotations in comparison to males. Additionally, certain domains and subjects are known to have a gender gap historically and culturally. This study is therefore interested in understanding which fields present differences between genders, may it be politics, sports, culture or others. 
 
 
 
@@ -15,20 +15,15 @@ TODO: Careful when talking about journal, state media instead for now
 
 This study aims at answering the following questions:
  
-- Are women or men more quoted in journals/Is the representation equal between men and women in media?
+- Is the representation equal between men and women in media?
 - How does the distribution of quotes based on gender vary across countries?
 - How does the distribution of quotes based on gender vary across domains? 
-- If men have a higher tendency to be quoted, in which domains is it the case and by how much?
-- How does the distribution of quotes between genders evolve in time, geographically and themaitcally?
-- Is there a tendency in each category for a men to hold longer quotes than women
-- Are men more likely to be quoted in highly respected media  --> define highly respected
-- Are there any blind spots in media where women are really neglected
-- Is there a difference in how women/men a certain age are quoted. 
-
-To discsuss with TA:
- 
-- 
-
+- If males have a higher tendency to be quoted, in which domains is it the case and by how much?
+- How does the distribution of quotes between genders evolve in time, geographically and thematically?
+- Is there a tendency in each category for a males to hold longer quotes than women
+- Are males more likely to be quoted in highly respected media  --> define highly respected
+- Are there any blind spots in media where females are espeially neglected
+- Is there a difference in how females/males a certain age are quoted
 
 ## Additional datasets
 
