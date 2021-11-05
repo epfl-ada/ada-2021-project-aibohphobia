@@ -37,7 +37,12 @@ Subset of wikidata which links QID to name.
 - URL parsing 
 - Merging dataframes
 - Clustering etc please ADD HELP HELP HELP 
-- 
+
+## Graphs to do
+- Compare number of males vs females
+- Group by country, redo females vs males
+- Group by age group and look at the distribution of speakers by gender
+- Group by topics and analyse men vs women 
 
 
 ## Timeline
