@@ -17,7 +17,8 @@ import re
 nltk.download('stopwords')
 nltk.download('punkt')
 
-#Topics in URL
+### Topics in URL ###
+
 def get_sitename(url):
     res = get_tld(url, as_object=True)
     return res.domain
@@ -61,7 +62,9 @@ def classify(matchers, url): #Give it an already generalized dictionary
                 tag_found.append(category)
     return tag_found # or you can "return None"
 
-#Cleaning data functions
+
+### Cleaning data functions ###
+
 def Remove_none_speakers(chunk):
     chunk = chunk.drop(chunk[chunk['speaker']=='None'].index)
     chunk = chunk.reset_index(drop=True)
@@ -115,3 +118,26 @@ def Chunk_url_extract(chunk, matchers):
     chunk['tags'] = tags_column   
     return chunk 
 
+
+### Preprocess whole chunk ###
+
+def process_chunk_complete(chunk, threshold_proba, matchers):
+    print(f'Processing chunk with {len(chunk)} rows')
+    #DATA CLEANING
+    #Remove None speakers
+    chunk = Remove_none_speakers(chunk)
+    
+    #Remove none unique ids and keep the first one
+    chunk = Remove_none_unique_ids(chunk)
+        
+    #Remove nan or empty quotes 
+    chunk = Remove_empty_quotes(chunk)
+
+    #Remove speakers for which probability is lower than a threshold
+    chunk = Remove_low_proba(chunk, threshold_proba)
+    
+    #URLS DATA EXTRACTION
+    chunk = Chunk_url_extract(chunk, matchers)
+    
+    tot_length = len(chunk)
+    return chunk, tot_length
