@@ -38,7 +38,7 @@ A function is used to clean the data in the following ways:
 - Please add Lisa/Souche
      
 **Extraction of information from journals:**
-- Using the URL's from QuoteBank, we extract features such as the country of origin from the newspaper using WikiData
+- Using the URL's from QuoteBank, we extract features such as the country of origin from the newspaper using WikiData API
 
 ** **
 
