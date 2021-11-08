@@ -18,11 +18,11 @@ This study aims at answering the following questions:
 - Are males more likely to be quoted in highly respected media? 
 - Are there any blind spots in media where females are especially neglected?
 - Is there a difference in how females/males at a certain age are quoted?
-
+- Are countries known to promote gender equality more likely to reflect this in media compared to the rest of the world ?
 
 Extra ideas (draft selene):
-- can we identify speakers who were quoted and that triggered a change in trend? Example: a woman is quoted once as she talks about topic A. After that we see an increase of women quoted talking about topic A ? Like some turning points in media?
-- Take data from countries who are known to be more "gender equal" or that have made statements for gender equality (like scandinavian countries) and compare with the rest of the world to see of this is actually reflected in media.
+- can we identify speakers who were quoted and that triggered a change in trend? Example: a woman is quoted once as she talks about topic A. After that we see an increase of women quoted talking about topic A ? Like some turning points in media? --> Comment Lavi: Intersting though not sure feasible, maybe we talk about it ? 
+
 
 
 
