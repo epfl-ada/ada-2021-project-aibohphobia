@@ -111,8 +111,6 @@ The data visualisation and final presentation of the results can also be divided
 
 
 ## Questions for TA:
-**: There seems to be a limit to the number of requests one can ask from wikidata which makes it hard to actually extract information about the journal, I am in touch with Akhil to figure this out
-
 
 
 Reference:
