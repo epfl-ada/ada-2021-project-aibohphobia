@@ -85,16 +85,17 @@ def from_array_to_single_string(array):
     return single
 
 def Remove_empty_qids(chunk):
+    chunk = chunk.drop(chunk[chunk['qids'].apply(lambda x : False if x else True)].index)
     chunk['qids'] = from_array_to_single_string(chunk['qids'])
-    chunk = chunk.drop(chunk[chunk['qids'].apply(lambda x : False if x=='NaN' else True)].index)
     chunk = chunk.reset_index(drop=True)
     return chunk 
 
 def Remove_low_proba(chunk, threshold): 
     #Gather the first probability for each row
-    chunk['probas'] = from_array_to_single_string(chunk['probas'])
     string_probas, nber_probas = [], []
-    string_probas = [chunk['probas'][i][1] for i in chunk.index]
+    chunk['probas'] = from_array_to_single_string(chunk['probas'])
+    string_probas = chunk['probas']
+    string_probas = [string_probas[i][1] for i in chunk.index]
     nber_probas = list(map(float, string_probas))
     series_probas = pd.Series(nber_probas, dtype='float64', index=chunk.index)
     
