@@ -80,10 +80,22 @@ def Remove_empty_quotes(chunk):
     chunk = chunk.reset_index(drop=True)
     return chunk 
 
-def Remove_low_proba(chunk, threshold):
+def from_array_to_single_string(array):
+    single = array.apply(lambda x : 'NaN' if x is None else x[0])
+    return single
+
+def Remove_empty_qids(chunk):
+    chunk = chunk.drop(chunk[chunk['qids'].apply(lambda x : False if x else True)].index)
+    chunk['qids'] = from_array_to_single_string(chunk['qids'])
+    chunk = chunk.reset_index(drop=True)
+    return chunk 
+
+def Remove_low_proba(chunk, threshold): 
     #Gather the first probability for each row
     string_probas, nber_probas = [], []
-    string_probas = [chunk['probas'][i][0][1] for i in chunk.index]
+    chunk['probas'] = from_array_to_single_string(chunk['probas'])
+    string_probas = chunk['probas']
+    string_probas = [string_probas[i][1] for i in chunk.index]
     nber_probas = list(map(float, string_probas))
     series_probas = pd.Series(nber_probas, dtype='float64', index=chunk.index)
     
@@ -119,9 +131,40 @@ def Chunk_url_extract(chunk, matchers):
     return chunk 
 
 
+### Wikidata processing ###
+def qid_to_gender(Wikidata_speakers):
+    df_speakers = Wikidata_speakers[['id', 'label', 'gender', 'nationality']].copy()
+    df_speakers['gender'] = from_array_to_single_string(df_speakers['gender'])
+    df_gender = pd.DataFrame({'qid': ['Q6581097', 'Q6581072'], 'sex': ['Male','Female']})        
+    Wikidata_gender = pd.merge(df_speakers, df_gender, left_on = 'gender', right_on = 'qid', how='inner')#row removed if no gender specified in the wikidata
+    return Wikidata_gender
+
+def qid_to_citizenship(df_speakers, Wikidata_countries):
+    df_speakers['nationality'] = from_array_to_single_string(df_speakers['nationality'])
+    df_citizenship = pd.merge(df_speakers, Wikidata_countries, left_on = 'nationality', right_on = 'QID', how='left')
+    
+    Wikidata_citizenship = df_citizenship[['id', 'sex', 'Label', 'Description']]
+    Wikidata_citizenship = Wikidata_citizenship.rename(columns={'label':'name', 'Label':'citizenship', 'sex':'gender'})
+    return Wikidata_citizenship
+
+def formating_wikidata(Wikidata_speakers, Wikidata_countries):
+    Wikidata_gender = qid_to_gender(Wikidata_speakers)
+    
+    Wikidata_citizenship = qid_to_citizenship(Wikidata_gender, Wikidata_countries)
+
+    return Wikidata_citizenship
+
+def merge_quotes_wikidata(Wikidata_speakers, Wikidata_countries, Quotes):
+    Wikidata_citizenship = formating_wikidata(Wikidata_speakers, Wikidata_countries)
+    Quotes_final = pd.merge(Quotes, Wikidata_citizenship, left_on = 'qids', right_on = 'id', how='left')
+    Quotes_final = Quotes_final.drop('id', axis=1)
+    Quotes_final = Quotes_final.dropna(subset=['gender'], axis=0)
+    Quotes_final = Quotes_final.reset_index(drop=True)
+    return Quotes_final
+
 ### Preprocess whole chunk ###
 
-def process_chunk_complete(chunk, threshold_proba, matchers):
+def process_chunk_complete(chunk, threshold_proba, matchers, Wikidata_speakers, Wikidata_countries):
     print(f'Processing chunk with {len(chunk)} rows')
     #DATA CLEANING
     #Remove None speakers
@@ -132,9 +175,15 @@ def process_chunk_complete(chunk, threshold_proba, matchers):
         
     #Remove nan or empty quotes 
     chunk = Remove_empty_quotes(chunk)
+    
+    #Remove empty qids and keep the first one 
+    chunk = Remove_empty_qids(chunk)
 
-    #Remove speakers for which probability is lower than a threshold
+    #Remove speakers for which probability is lower than a threshold, and keep the first speaker if several
     chunk = Remove_low_proba(chunk, threshold_proba)
+    
+    #Add gender and citizenship
+    chunk = merge_quotes_wikidata(Wikidata_speakers, Wikidata_countries, chunk)
     
     #URLS DATA EXTRACTION
     chunk = Chunk_url_extract(chunk, matchers)
