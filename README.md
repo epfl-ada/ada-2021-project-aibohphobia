@@ -10,12 +10,14 @@ Word_count: 146
 
 ## The dataset
 The dataset contains the Quotebank quotes which me be found at the following link for the years 2016-2020.
+
 ## Research questions
 
 This study aims at answering the following questions:
  
 - Is the representation equal between males and females in media?
-- How does the distribution of quotes based on gender vary across countries and across domains?
+- How does the distribution of quotes based on gender vary across countries?
+- How does the distribution of quotes based on gender vary across domains?
 - How does the distribution of quotes between genders evolve in time, geographically and thematically?
 - Is there a tendency in each category for a males to have longer quotes than females?
 - Are males more likely to be quoted in highly respected media? 
@@ -23,15 +25,10 @@ This study aims at answering the following questions:
 - Is there a difference in how females/males at a certain age are quoted?
 - Are countries known to promote gender equality more likely to reflect this in media compared to the rest of the world ?
 
-Extra ideas (draft selene):
-- can we identify speakers who were quoted and that triggered a change in trend? Example: a woman is quoted once as she talks about topic A. After that we see an increase of women quoted talking about topic A ? Like some turning points in media? --> Comment Lavi: Intersting though not sure feasible, maybe we talk about it ? 
-
-
-
 
 ## Additional datasets
 
-As we are interested in linking the quote to a geographical place, we do so by taking the origin of location of the journal.
+As we are interested in linking the quote to a geographical place, we do so by taking the geographical location of the journal.
 We currently use the URL given by the QuoteBank dataset to retrieve information about the journal though the wikidata API. **
 
 As of now we do not plan on using any additional datasets.
@@ -49,11 +46,15 @@ A function is used to clean the data in the following ways:
 - Remove "None" speakers 
 - Remove speakers with a probability inferior to a certain threshold (50%)
 - Make sure quotes are non empty 
-- Change QID's to labels for eg. "Q31"-->"Belgium"
+
+**Additional data extraction**
+
+Using the URL and data from Wikidata provided, we obtain further information:
 - Tags are added if the url contains specific mentions of a topic from a predefined list (e.g.: sports, business, music...)
-     
-**Extraction of information from journals:**
 - Using the URL's from QuoteBank, we extract features such as the country of origin from the newspaper using WikiData API
+- Change QID's to labels for eg. "Q31"-->"Belgium"
+- Using the QID, the speaker's nationality, date of birth and gender are found
+- The age (for the speakers still alive today) is calculated at the moment of the quote.
 
 **Initial analysis of data**
 
