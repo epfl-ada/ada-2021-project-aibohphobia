@@ -7,6 +7,9 @@ The goal is to highlight possible trends about which media sources quote females
 
 Word_count: 146
 
+
+## The dataset
+The dataset contains the Quotebank quotes which me be found at the following link for the years 2016-2020.
 ## Research questions
 
 This study aims at answering the following questions:
@@ -34,7 +37,13 @@ We currently use the URL given by the QuoteBank dataset to retrieve information 
 As of now we do not plan on using any additional datasets.
 
 ## Methods
-**Data cleaning: **
+**Data filtering**
+In order to limit the data we are working on, for each year we:
+- Computed the number times a media sited a quote
+- Took the top 100 media as a proxy for popularity 
+- Filtered the whole dataframe
+
+**Data cleaning:**
 
 A function is used to clean the data in the following ways:
 - Remove "None" speakers 
