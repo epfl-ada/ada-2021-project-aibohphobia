@@ -18,41 +18,57 @@ nltk.download('stopwords')
 nltk.download('punkt')
 
 
-### Topics in URL ###
 
 def get_sitename(url):
+    '''
+    Function to extract sitename from a URL
+    '''
     res = get_tld(url, as_object=True)
     return res.domain
 
-def extract_name(df): 
+def extract_name(df):
+    '''
+    Function to extract sitename from a list of URLs (a row in the original dataset)
+    '''
     df['sitenames'] = np.nan
     for row in range(df.shape[0]):
         df['sitenames'][row] = [get_sitename(site) for site in df['urls'][row]] 
         
 def get_domain(url):
+    '''
+    Function to extract domain from a URL
+    '''
     res = get_tld(url, as_object=True)
     return res.tld
 
-def get_sitename(url):
-    res = get_tld(url, as_object=True)
-    return res.domain
-
 def tokenize(text):
+    '''
+    Function to transform a string into a list of words in their generalised form
+    '''
     stemmer = PorterStemmer()
     text = "".join([ch for ch in text if ch not in string.punctuation]) # get the text without punctuation
     tokens = nltk.word_tokenize(text) #Tokenizers divide strings into lists of substrings
     return " ".join([stemmer.stem(word.lower()) for word in tokens if word not in stopwords.words('english')]) #stem all words
 
 def generalizeDictionary(matchers):
+    '''
+    Function to put transform a dictionary (key-value is category-word) into its generalised form
+    '''
     stemmer = PorterStemmer()
     for category in matchers:
         for i in range(len(matchers[category])):
             matchers[category][i] = tokenize(matchers[category][i])
             
 def getWordsFromURL(url):
+    '''
+    Function to split a url into seperate words
+    '''
     return re.compile(r'\W+',re.UNICODE).split(url)
 
 def classify(matchers, url): #Give it an already generalized dictionary
+    '''
+    Given a (generalised) dictionary, add tags to a URL if certain words/topics detected. 
+    '''
     stemmer = PorterStemmer()
     tag_found = []
     general_url = [tokenize(x) for x in getWordsFromURL(url)]
@@ -67,16 +83,25 @@ def classify(matchers, url): #Give it an already generalized dictionary
 ### Cleaning data functions ###
 
 def Remove_none_speakers(chunk):
+    '''
+    Remove where speaker is None type
+    '''
     chunk = chunk.drop(chunk[chunk['speaker']=='None'].index)
     chunk = chunk.reset_index(drop=True)
     return chunk 
 
 def Remove_none_unique_ids(chunk):
+    '''
+    Remove duplicate quoteIDs 
+    '''
     if not(chunk.quoteID.is_unique):
         chunk = chunk.drop_duplicates(subset=['quoteID'], keep='first')
     return chunk 
 
 def Remove_empty_quotes(chunk):
+    '''
+    Remove empty quotes
+    '''
     chunk = chunk.drop(chunk[chunk["quotation"].isna() | chunk["quotation"].isnull()].index)
     chunk = chunk.reset_index(drop=True)
     return chunk 
@@ -86,12 +111,18 @@ def from_array_to_single_string(array):
     return single
 
 def Remove_empty_qids(chunk):
+    '''
+    Remove rows with empty qids 
+    '''
     chunk = chunk.drop(chunk[chunk['qids'].apply(lambda x : False if x else True)].index)
     chunk['qids'] = from_array_to_single_string(chunk['qids'])
     chunk = chunk.reset_index(drop=True)
     return chunk 
 
 def Remove_low_proba(chunk, threshold): 
+    '''
+    Remove speakers when the probability of being the speaker is below the threshold 
+    '''
     #Gather the first probability for each row
     string_probas, nber_probas = [], []
     chunk['probas'] = from_array_to_single_string(chunk['probas'])
@@ -106,6 +137,9 @@ def Remove_low_proba(chunk, threshold):
     return chunk 
 
 def Chunk_url_extract(chunk, matchers):
+    '''
+    Function that takes a dataframe and will extract sitename, domain and topics (tags) from URL
+    '''
     tags_column = [] # List of lists. Each list inside corresponds to a row. Will become the 'tag' column
     site_column = []
     domain_column = []
@@ -134,6 +168,9 @@ def Chunk_url_extract(chunk, matchers):
 
 ### Wikidata processing ###
 def qid_to_gender(Wikidata_speakers):
+    '''
+    Given a qid, extract gender and date of birth from Wikidata_speakers file
+    '''
     # Add date of birth --> TODO
     df_speakers = Wikidata_speakers[['id', 'label', 'gender', 'nationality']].copy()
     df_speakers['gender'] = from_array_to_single_string(df_speakers['gender'])
@@ -142,6 +179,9 @@ def qid_to_gender(Wikidata_speakers):
     return Wikidata_gender
 
 def qid_to_citizenship(df_speakers, Wikidata_countries):
+    '''
+    Given a qid, extract citizenship of speaker from Wikidata_coruntries file
+    '''
     df_speakers['nationality'] = from_array_to_single_string(df_speakers['nationality'])
     df_citizenship = pd.merge(df_speakers, Wikidata_countries, left_on = 'nationality', right_on = 'QID', how='left')
     
@@ -150,6 +190,9 @@ def qid_to_citizenship(df_speakers, Wikidata_countries):
     return Wikidata_citizenship
 
 def formating_wikidata(Wikidata_speakers, Wikidata_countries):
+    '''
+    Given a Wikidata_speakers, Wikidata_countries and a qid, extract nationality, gender, date of birth 
+    '''
     Wikidata_gender = qid_to_gender(Wikidata_speakers)
     
     Wikidata_citizenship = qid_to_citizenship(Wikidata_gender, Wikidata_countries)
@@ -157,6 +200,9 @@ def formating_wikidata(Wikidata_speakers, Wikidata_countries):
     return Wikidata_citizenship
 
 def merge_quotes_wikidata(Wikidata_speakers, Wikidata_countries, Quotes):
+    '''
+    Merge wikidata information to the Quotes file on the qid
+    '''
     Wikidata_citizenship = formating_wikidata(Wikidata_speakers, Wikidata_countries)
     Quotes_final = pd.merge(Quotes, Wikidata_citizenship, left_on = 'qids', right_on = 'id', how='left')
     Quotes_final = Quotes_final.drop('id', axis=1)
@@ -167,6 +213,9 @@ def merge_quotes_wikidata(Wikidata_speakers, Wikidata_countries, Quotes):
 ### Preprocess whole chunk ###
 
 def process_chunk_complete(chunk, threshold_proba, matchers, Wikidata_speakers, Wikidata_countries):
+    '''
+    Apply data cleaning and url informaiton extraction to a dataframe
+    '''
     print(f'Processing chunk with {len(chunk)} rows')
     #DATA CLEANING
     #Remove None speakers
@@ -197,6 +246,9 @@ def process_chunk_complete(chunk, threshold_proba, matchers, Wikidata_speakers, 
 
 ## Rapid cleaning
 def rapid_clean(df_base, threshold_proba = 0.5):
+    '''
+    Apply basic data cleaning to a dataframe
+    '''
 
     df_base = Remove_none_speakers(df_base)
 
@@ -215,6 +267,9 @@ def rapid_clean(df_base, threshold_proba = 0.5):
 
 
 def extract_and_merge(Wikidata_speakers, Wikidata_countries,df, matchers):
+    '''
+    Extract URL and Wikidata information from a dataframe
+    '''
     #Add gender and citizenship
     df = merge_quotes_wikidata(Wikidata_speakers, Wikidata_countries, df)
     
