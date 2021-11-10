@@ -14,6 +14,7 @@ import math
 from collections import Counter
 from operator import itemgetter
 import re
+from tqdm.auto import trange, tqdm
 nltk.download('stopwords')
 nltk.download('punkt')
 
@@ -140,10 +141,14 @@ def Chunk_url_extract(chunk, matchers):
     '''
     Function that takes a dataframe and will extract sitename, domain and topics (tags) from URL
     '''
+    
+    
     tags_column = [] # List of lists. Each list inside corresponds to a row. Will become the 'tag' column
     site_column = []
     domain_column = []
-    for index, row in chunk.iterrows():
+    len_chunk = len(chunk)
+    print('Total length: ',len_chunk)
+    for index, row in tqdm(chunk.iterrows()):
             tags = [] #tags for all the urls in that row
             domains = []
             sitenames = []
@@ -166,13 +171,14 @@ def Chunk_url_extract(chunk, matchers):
     return chunk 
 
 
-### Wikidata processing ###
+### Wikidata processing: this is done once only###
+# -------------------------------------------------------
 def qid_to_gender(Wikidata_speakers):
     '''
     Given a qid, extract gender and date of birth from Wikidata_speakers file
     '''
     # Add date of birth --> TODO
-    df_speakers = Wikidata_speakers[['id', 'label', 'gender', 'nationality']].copy()
+    df_speakers = Wikidata_speakers[['id', 'label', 'gender', 'nationality', 'date_of_birth']].copy()
     df_speakers['gender'] = from_array_to_single_string(df_speakers['gender'])
     df_gender = pd.DataFrame({'qid': ['Q6581097', 'Q6581072'], 'sex': ['Male','Female']})        
     Wikidata_gender = pd.merge(df_speakers, df_gender, left_on = 'gender', right_on = 'qid', how='inner')#row removed if no gender specified in the wikidata
@@ -199,15 +205,21 @@ def formating_wikidata(Wikidata_speakers, Wikidata_countries):
 
     return Wikidata_citizenship
 
-def merge_quotes_wikidata(Wikidata_speakers, Wikidata_countries, Quotes):
-    '''
-    Merge wikidata information to the Quotes file on the qid
-    '''
-    Wikidata_citizenship = formating_wikidata(Wikidata_speakers, Wikidata_countries)
-    Quotes_final = pd.merge(Quotes, Wikidata_citizenship, left_on = 'qids', right_on = 'id', how='left')
-    Quotes_final = Quotes_final.drop('id', axis=1)
-    Quotes_final = Quotes_final.dropna(subset=['gender'], axis=0)
-    Quotes_final = Quotes_final.reset_index(drop=True)
+# -------------------------------------------------------
+
+
+### This is called in the preprocessing
+def merge_quotes_wikidata(Wikidata_utils, df):
+    """
+        Given the Wikidata_utils (pickle file to download on drive)
+        and open the following way
+        ----with open('Wikidata_utils.pkl', 'rb') as input_file:
+                Wikidata_utils = pickle.load(input_file)---
+    """
+    Quotes_merged = pd.merge(df, Wikidata_utils, left_on = 'qids', right_on = 'id', how='left')
+    Quotes_merged_id_drop = Quotes_merged.drop('id', axis=1)
+    Quotes_merged_drop_gender = Quotes_merged_id_drop.dropna(subset=['gender'], axis=0)
+    Quotes_final = Quotes_merged_drop_gender.reset_index(drop=True)
     return Quotes_final
 
 ### Preprocess whole chunk ###
