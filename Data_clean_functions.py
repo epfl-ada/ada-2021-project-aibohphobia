@@ -17,6 +17,7 @@ import re
 nltk.download('stopwords')
 nltk.download('punkt')
 
+
 ### Topics in URL ###
 
 def get_sitename(url):
@@ -133,6 +134,7 @@ def Chunk_url_extract(chunk, matchers):
 
 ### Wikidata processing ###
 def qid_to_gender(Wikidata_speakers):
+    # Add date of birth --> TODO
     df_speakers = Wikidata_speakers[['id', 'label', 'gender', 'nationality']].copy()
     df_speakers['gender'] = from_array_to_single_string(df_speakers['gender'])
     df_gender = pd.DataFrame({'qid': ['Q6581097', 'Q6581072'], 'sex': ['Male','Female']})        
@@ -190,3 +192,35 @@ def process_chunk_complete(chunk, threshold_proba, matchers, Wikidata_speakers, 
     
     tot_length = len(chunk)
     return chunk, tot_length
+
+
+
+## Rapid cleaning
+def rapid_clean(df_base, threshold_proba = 0.5):
+
+    df_base = Remove_none_speakers(df_base)
+
+    #Remove none unique ids and keep the first one
+    df_base = Remove_none_unique_ids(df_base)
+
+    #Remove nan or empty quotes 
+    df_base = Remove_empty_quotes(df_base)
+
+    #Remove empty qids and keep the first one 
+    df_base = Remove_empty_qids(df_base)
+
+    #Remove speakers for which probability is lower than a threshold, and keep the first speaker if several
+    df_base = Remove_low_proba(df_base, threshold_proba)
+    return df_base
+
+
+def extract_and_merge(Wikidata_speakers, Wikidata_countries,df, matchers):
+    #Add gender and citizenship
+    df = merge_quotes_wikidata(Wikidata_speakers, Wikidata_countries, df)
+    
+    #URLS DATA EXTRACTION
+    df = Chunk_url_extract(df, matchers)
+    tot_length = len(df)
+    
+    return df, tot_length
+    
