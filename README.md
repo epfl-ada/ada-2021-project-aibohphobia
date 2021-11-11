@@ -9,11 +9,11 @@ The goal is to highlight possible trends about which media sources quote females
 
 ## The dataset
 
-The dataset contains the quotes from the Quotebank dataset (link) for the years 2016-2020. Fro each quote, this dataset includes information on the speaker (along with their qid), probability of being the speaker as well as the source of the quote.
+The dataset contains the quotes from the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 2016-2020. For each quote, this dataset includes information on the speaker (along with their qid from [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)), probability of being the speaker as well as the source of the quote.
 
 ## Research questions
 
-Throughout this question we aim to answer a main question: "Is the representation equal between males and females in media?". In order to answer this complex question, we have identified the following research questions which will guide us in the project: 
+Throughout this study we aim to answer a main question: "Is the representation equal between males and females in media?". In order to answer this complex question, we have identified the following research questions which will guide us in the project: 
 
 - How does the distribution of quotes based on gender vary across countries?
 - How does the distribution of quotes based on gender vary across topics?
@@ -29,6 +29,8 @@ Throughout this question we aim to answer a main question: "Is the representatio
 
 As we are interested in linking the quote to a geographical place, we do so by taking the geographical location of the journal.
 We currently use the URL given by the QuoteBank dataset to retrieve information about the journal though the wikidata API.
+
+We also add a dataset which countains the countries belonging to each continent in a csv file. 
 
 As of now we do not plan on using any additional datasets.
 
