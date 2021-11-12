@@ -1,5 +1,32 @@
 # Underrepresentation of females in media: a myth or a truth?
 
+## Contents
+
+* Abstract
+* The dataset
+* Research questions
+* Additional datasets
+* Methods
+* Libraries of interest
+* Timeline
+* Team organization
+* References
+
+## Project directory
+
+|__ M2_pre_processing.ipynb
+|__ M2_cleaning.py
+|__ Milestone_2.ipynb
+|__ M2_media_wikidata.py
+|__ M2_plots.py
+
+**M2_pre_processing.ipynb**: Notebook to clean data and organize it for the data analysis.
+**M2_cleaning.py**: script containing functions for the data cleaning that are called as a module in `M2_pre_processing.ipynb`.
+**Milestone_2.ipynb**: Notebook containing the analysis done on the cleaned data.
+**M2_media_wikidata.py**: script containing functions for extracting data through the wikidata API. Are called as a module in `M2_pre_processing.ipynb` and `Milestone_2.ipynb`.
+**M2_plots.py**: script containing functions called as a module during the data analysis in `Milestone_2.ipynb`.
+
+
 ## Abstract
 
 Females' equal participation in all facets of society is a fundamental human right. Yet, around the world, from politics, entertainment to the workplace, they have historically been underrepresented, including in mainstream media. [Studies](https://www.tandfonline.com/doi/full/10.1080/23257962.2016.1260445) have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to explore whether media coverage gives the same possibilities regardless of gender.
@@ -10,6 +37,8 @@ The goal is to highlight possible trends about which media sources quote females
 ## The dataset
 
 The dataset contains the quotes from the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 2016-2020. For each quote, this dataset includes information on the speaker (along with their qid from [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)), probability of being the speaker as well as the source of the quote.
+
+Once the data has been cleaned for each year, it is saved on this [drive](https://drive.google.com/drive/folders/1bP67GGJyPXD7bCr5c6f7O2fM40AWpXJN?usp=sharing). The folder also contains a `README_DRIVE.md` precising the data that can be found.
 
 ## Research questions
 
@@ -33,6 +62,7 @@ We currently use the URL given by the QuoteBank dataset to retrieve information 
 We also add a dataset which countains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
 
 As of now we do not plan on using any additional datasets.
+
 
 ## Methods
 
@@ -62,7 +92,8 @@ Using the URL and data from Wikidata provided, we obtain further information:
 
 **Initial analysis of data**
 
-Comparison of number of male versus female quotes
+1. Comparison of number of male versus female quotes
+
 - Overall difference in count of males versus females, over all years 
 - Overall count of male versus female quotes, per year
 - Overall count of male versus female quotes, per category
@@ -70,24 +101,29 @@ Comparison of number of male versus female quotes
 - Overall count of male versus female quotes, per country/geographical location
 - Overall count of male versus female quotes, per year and per country/geographical location
 
-Tests for statistical significance 
+2. Tests for statistical significance 
+
 - Perform statistical tests to see if the difference between counts of males and females per year is statistically significant
 - Perform statistical tests to see if the difference per year and per category is statistically significant
 - Perform statistical tests to see if the difference per year and per location is statistically significant
 
 **Deeper analysis**
 
-Comparison of media coverage depending on gender in highly repsected media
+1. Comparison of media coverage depending on gender in highly repsected media
+
 - Define a list of "highly respected" sources, and re-filter the data to keep only the quotes that were quoted in these sources
 - Compare the number of males and females that have been quoted and test for statistical significance
 
-Comparison in length of quote
+2. Comparison in length of quote
+
 - Perform statistical tests to analyse whether a difference in the length of quotes is significant between years and location or category
 
-Media coverage in function of age
+3. Media coverage in function of age
+
 - Group speakers into classes of age and analyse trends that can appear with respect to aforementioned criteria between genders. 
 
-Provided enough time, comparison of media coverage depending on gender in most popular media
+4. Provided enough time, comparison of media coverage depending on gender in most popular media
+
 - Instead of filtering the dataset to keep only the "top k media sources", filter the quotes based on a list of most popular media sources (e.g.: most printed/bought newspapers worldwide)
 - Perform the same analysis as previously
 
@@ -105,8 +141,8 @@ Results can be presented in several ways, depending on the information that need
 
 
 
-
 ## Libraries of interest
+
 - Request: for extracting data
 - Pandas: for showing the data in jupyter
 - Seaborn/Matplotlib: for graphs 
@@ -117,11 +153,11 @@ Results can be presented in several ways, depending on the information that need
 
 ## Timeline
 
-- 12/11: Hand in Milestone 2 having done part of the initial analysis on data (for the top 10 media sources) 
-- 15/11: Having finished the updated cleaning using additional top sites or take the most popular news as my be found on the web. We will also add more quote categories to analyse in order to increase the number of tags.
-- 19/11: Finish the basic data analysis using the visualization libraries on the complete data set. 
-- 3/12: Complete with the deeper analysis
-- 17/12: Present results on a github page with our finalised data story
+- **12/11**: Hand in Milestone 2 having done part of the initial analysis on data (for the top 10 media sources) 
+- **15/11**: Having finished the updated cleaning using additional top sites or take the most popular news as my be found on the web. We will also add more quote categories to analyse in order to increase the number of tags.
+- **19/11**: Finish the basic data analysis using the visualization libraries on the complete data set. 
+- **3/12**: Complete with the deeper analysis
+- **17/12**: Present results on a github page with our finalised data story
 
 ## Team organization 
 
@@ -130,12 +166,9 @@ For the deeper analysis, the tasks can be split into 3 parts (analysis on quote 
 The data visualisation and final presentation of the results can also be divided according to the message that we want to transmit. This means that team's efforts will be dedicated in part to preparing the map, the categories and the highly repsected journals/media respectively.
 
 
+### Note:
 
-## Questions for TA:
-
-
-## Note:
-Following the results of our initial analysis, we find that changing the top 10 medias who cite the most quotes to the top 100/1000 most famous medias will bring additional/more insightful information and decrease the number of data.
+Following the results of our initial analysis, we find that changing the top 10 medias who cite the most quotes to the top 100/1000 most famous medias will bring additional/more insightful information.
 
 ### *References:
 (1) -  Michelle Caswell, Alda Allina Migoni, Noah Geraci & Marika Cifor (2017) ‘To Be Able to Imagine Otherwise’: community archives and the importance of representation, Archives and Records, 38:1, 5-26, DOI: 10.1080/23257962.2016.1260445 
