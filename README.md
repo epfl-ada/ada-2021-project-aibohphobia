@@ -10,7 +10,6 @@
 * [Libraries of interest](#libraries-of-interest)
 * [Timeline](#timeline)
 * [Team organization](#team-organization)
-* [References](#references)
 
 ## Project directory
 
@@ -56,8 +55,8 @@ Throughout this study we aim to answer a main question: "Is the representation e
 
 ## Additional datasets
 
-As we are interested in linking the quote to a geographical place, we do so by taking the geographical location of the journal.
-We currently use the URL given by the QuoteBank dataset to retrieve information about the journal though the wikidata API.
+As we are interested in linking the quote to a geographical place, we do so by taking the geographical location of the media.
+We currently use the URL given by the QuoteBank dataset to retrieve information about the media though the wikidata API.
 
 We also add a dataset which countains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
 
@@ -95,17 +94,13 @@ Using the URL and data from Wikidata provided, we obtain further information:
 1. Comparison of number of male versus female quotes
 
 - Overall difference in count of males versus females, over all years 
-- Overall count of male versus female quotes, per year
-- Overall count of male versus female quotes, per category
-- Overall count of male versus female quotes, per year and per category
-- Overall count of male versus female quotes, per country/geographical location
-- Overall count of male versus female quotes, per year and per country/geographical location
+- Overall count of male versus female quotes, per year, per category, per geographical location and a combination of these
 
 2. Tests for statistical significance 
 
-- Perform statistical tests to see if the difference between counts of males and females per year is statistically significant
-- Perform statistical tests to see if the difference per year and per category is statistically significant
-- Perform statistical tests to see if the difference per year and per location is statistically significant
+Perform statistical tests to see if the difference:
+- Between counts of males and females per year is statistically significant
+- Per year and per location/(resp. category) is statistically significant
 
 **Deeper analysis**
 
@@ -124,8 +119,7 @@ Using the URL and data from Wikidata provided, we obtain further information:
 
 4. Provided enough time, comparison of media coverage depending on gender in most popular media
 
-- Instead of filtering the dataset to keep only the "top k media sources", filter the quotes based on a list of most popular media sources (e.g.: most printed/bought newspapers worldwide)
-- Perform the same analysis as previously
+- Instead of filtering the dataset to keep only the "top k sources of the highest count", filter the quotes based on a list of most popular media sources will bring additional/more insightful information
 
 
 
@@ -137,18 +131,18 @@ Results can be presented in several ways, depending on the information that need
 - For geographical trends, we could present a world map indicating the male-female difference for the countries studied. We could also add the category where females are most (or least) quoted, or mention rapidly growing categories where females are increasingly gaining floor over the years. This would give indications concerning how the media in that country represents the genders. 
 - The results could also be presented by category or subject, showing how quotes are distributed amongst genders within a certain subject.
 - To these visualisations, we could add extra statistics on the average length of the quote or age of the speaker.
-- Finally, we could present detailed results on a few known journals (from the "highly respected" set)
+- Finally, we could present detailed results on a few known media (from the "highly respected" set)
 
 
 
 ## Libraries of interest
 
-- Request: for extracting data
-- Pandas: for showing the data in jupyter
-- Seaborn/Matplotlib: for graphs 
-- URL parser: for parsing URLS in the way we need (for eg: media information)
-- Statsmodel: Statistics library for making our analysis
-- Bokeh: interactive plotting for advanced visualization 
+- Request: Extracting data
+- Pandas: Manipulating data
+- Seaborn/Matplotlib: Graphs 
+- URL parser: Parsing URLS
+- Statsmodel: Statistics library
+- Bokeh: Interactive plotting for advanced visualization 
 - Nltk: tokenising words and finding synonyms
 
 ## Timeline
@@ -163,15 +157,7 @@ Results can be presented in several ways, depending on the information that need
 
 For the initial analysis, the tasks can be split depending on whether the analysis is done per location or per category.
 For the deeper analysis, the tasks can be split into 3 parts (analysis on quote length, on age and on the highly respected set)
-The data visualisation and final presentation of the results can also be divided according to the message that we want to transmit. This means that team's efforts will be dedicated in part to preparing the map, the categories and the highly repsected journals/media respectively.
+The data visualisation and final presentation of the results can also be divided according to the message that we want to transmit. This means that team's efforts will be dedicated in part to preparing the map, the categories and the highly respected media respectively.
 
-
-### Note:
-
-Following the results of our initial analysis, we find that changing the top 10 medias who cite the most quotes to the top 100/1000 most famous medias will bring additional/more insightful information.
-
-### *References:
-(1) -  Michelle Caswell, Alda Allina Migoni, Noah Geraci & Marika Cifor (2017) ‘To Be Able to Imagine Otherwise’: community archives and the importance of representation, Archives and Records, 38:1, 5-26, DOI: 10.1080/23257962.2016.1260445 
-*
 
 
