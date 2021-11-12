@@ -150,14 +150,14 @@ def compute_quotation_length(df):
     return df 
 
 ### compute_country_from_qid
-def compute_country_from_qid(df):
+def compute_country_from_qid(df, qids_to_country):
     """
         Function to compute the name of the countries based on their qid
     :param df: dataframe
     :return: dataframe with added column `media_country`
     """
     df["media_country_qid"] = extract_element_from_series(df['media_country_qid'])
-    df = pd.merge(df, qid_country, left_on = 'media_country_qid', right_on='QID', how='left').drop('QID', axis=1)
+    df = pd.merge(df, qids_to_country, left_on = 'media_country_qid', right_on='QID', how='left').drop('QID', axis=1)
     df.rename({"Country": "media_country"})
     return df
 
@@ -320,10 +320,10 @@ def plot_avg_quotes_length(df, conf_int):
     """
     year = df['quoteID'][0][0:4]
     f = plt.figure(figsize=(8,10))
-    sns.catplot(x='gender', y=df['quotation_length'], kind='bar', data = df, height=5, aspect=0.8)#, ci=conf_int)
+    sns.catplot(data = df, x='gender', y='quotation_length', kind='bar', height=5, aspect=0.8, ci=conf_int)
     plt.title('Average quotation length depending on gender for the year '+ year)
     plt.ylabel('Quotation length')
-    #plt.tight_layout()
+    plt.tight_layout()
     plt.ylim(113,126)
     plt.show()
 
@@ -334,8 +334,8 @@ def plot_quotes_media_country(df):
     :param df: dataframe 
     """
     f = plt.figure(figsize=(12,6))
-    ax = sns.countplot(data=df_2015, x='media_country', hue='gender', order=df_2015['Country'].value_counts().index)
+    ax = sns.countplot(data=df, x='media_country', hue='gender', order=df['media_country'].value_counts().index)
     plt.xlabel("Top media's country")
     plt.ylabel('Number of quotes')
-    year = df_2015['quoteID'][0][0:4]
+    year = df['quoteID'][0][0:4]
     plt.title("Number of quotes depending on gender and media's country for the year "+year)
