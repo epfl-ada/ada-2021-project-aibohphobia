@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Females' equal participation in all facets of society is a fundamental human right. Yet, around the world, from politics, entertainment to the workplace, they have historically been underrepresented, including in mainstream media. Studies [1] have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to explore whether media coverage gives the same possibilities regardless of gender.
+Females' equal participation in all facets of society is a fundamental human right. Yet, around the world, from politics, entertainment to the workplace, they have historically been underrepresented, including in mainstream media. [Studies](https://www.tandfonline.com/doi/full/10.1080/23257962.2016.1260445) have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to explore whether media coverage gives the same possibilities regardless of gender.
 The goal is to highlight possible trends about which media sources quote females and analyse their proportion of published quotations in comparison to males. Additionally, certain domains and subjects are known to have a gender gap. This study is therefore interested in understanding which fields present differences between genders, may it be politics, sports, culture or others. The difference between countries, year and media source will also be analysed as well as the impact of such factors on the length and frequency of female quotes.
 
 
@@ -30,7 +30,7 @@ Throughout this study we aim to answer a main question: "Is the representation e
 As we are interested in linking the quote to a geographical place, we do so by taking the geographical location of the journal.
 We currently use the URL given by the QuoteBank dataset to retrieve information about the journal though the wikidata API.
 
-We also add a dataset which countains the countries belonging to each continent in a csv file. 
+We also add a dataset which countains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
 
 As of now we do not plan on using any additional datasets.
 
@@ -58,6 +58,7 @@ Using the URL and data from Wikidata provided, we obtain further information:
 - Change QIDs to labels (e.g.: "Q31"is changed to "Belgium")
 - Using the QID the speaker's nationality, date of birth and gender are found
 - The age (for the speakers still alive today) is calculated at the moment of the quote
+- The URL is used to query the wikidata to find the country of origin of media which cited the quote
 
 **Initial analysis of data**
 
