@@ -14,17 +14,17 @@
 
 ## Project directory
 
-|__ M2_pre_processing.ipynb
-|__ M2_cleaning.py
-|__ Milestone_2.ipynb
-|__ M2_media_wikidata.py
+|__ M2_pre_processing.ipynb\
+|__ M2_cleaning.py\
+|__ Milestone_2.ipynb\
+|__ M2_media_wikidata.py\
 |__ M2_plots.py
 
-**M2_pre_processing.ipynb**: Notebook to clean data and organize it for the data analysis.
-**M2_cleaning.py**: script containing functions for the data cleaning that are called as a module in `M2_pre_processing.ipynb`.
-**Milestone_2.ipynb**: Notebook containing the analysis done on the cleaned data.
-**M2_media_wikidata.py**: script containing functions for extracting data through the wikidata API. Are called as a module in `M2_pre_processing.ipynb` and `Milestone_2.ipynb`.
-**M2_plots.py**: script containing functions called as a module during the data analysis in `Milestone_2.ipynb`.
+**M2_pre_processing.ipynb**: Notebook to clean data and organize it for the data analysis.\
+**M2_cleaning.py**: script containing functions for the data cleaning that are called as a module in `M2_pre_processing.ipynb`.\
+**M2_initial_analysis.ipynb**: Notebook containing the analysis done on the cleaned data.\
+**M2_media_wikidata.py**: script containing functions for extracting data through the wikidata API. Are called as a module in `M2_pre_processing.ipynb` and `M2_initial_analysis.ipynb`.\
+**M2_plots.py**: script containing functions called as a module during the data analysis in `Milestone_2.ipynb`.\
 
 
 ## Abstract
