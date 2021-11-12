@@ -2,7 +2,7 @@
 
 ## Contents
 
-* Abstract
+* [Abstract](#abstract)
 * The dataset
 * Research questions
 * Additional datasets
@@ -27,7 +27,7 @@
 **M2_plots.py**: script containing functions called as a module during the data analysis in `Milestone_2.ipynb`.\
 
 
-## Abstract
+# Abstract
 
 Females' equal participation in all facets of society is a fundamental human right. Yet, around the world, from politics, entertainment to the workplace, they have historically been underrepresented, including in mainstream media. [Studies](https://www.tandfonline.com/doi/full/10.1080/23257962.2016.1260445) have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to explore whether media coverage gives the same possibilities regardless of gender.
 The goal is to highlight possible trends about which media sources quote females and analyse their proportion of published quotations in comparison to males. Additionally, certain domains and subjects are known to have a gender gap. This study is therefore interested in understanding which fields present differences between genders, may it be politics, sports, culture or others. The difference between countries, year and media source will also be analysed as well as the impact of such factors on the length and frequency of female quotes.
