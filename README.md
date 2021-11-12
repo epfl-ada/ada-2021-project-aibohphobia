@@ -3,14 +3,14 @@
 ## Contents
 
 * [Abstract](#abstract)
-* The dataset
-* Research questions
-* Additional datasets
-* Methods
-* Libraries of interest
-* Timeline
-* Team organization
-* References
+* [The dataset](#the-dataset)
+* [Research questions](#research-questions)
+* [Additional datasets](#additional-datasets)
+* [Methods](#methods)
+* [Libraries of interest](#libraries-of-interest)
+* [Timeline](#timeline)
+* [Team organization](#team-organization)
+* [References](#references)
 
 ## Project directory
 
