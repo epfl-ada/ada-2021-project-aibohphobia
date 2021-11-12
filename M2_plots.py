@@ -1,0 +1,291 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from M2_cleaning import *
+
+#Settings for the plots 
+sns.set_style("ticks")
+colors= sns.color_palette('colorblind')
+plt.rc('xtick', labelsize=14) 
+plt.rc('ytick', labelsize=14) 
+plt.rc('axes', titlesize=18)
+plt.rc('axes', labelsize=13)
+plt.rcParams['ytick.major.size'] = 7
+plt.rcParams['ytick.minor.size'] = 6
+sns.set_style("darkgrid", {'axes.grid' : False, 'ytick.left': True, 'xtick.bottom': True})
+
+
+##### Functions to compute/calculate #####
+### Number of quotes per gender 
+def count_by_gender(df):
+    """
+        Function compute the number of quotes depending on `gender`
+    :param df: dataframe 
+    :return gender_count: dataframe of the number of quotes for one year
+    """
+    year = df['quoteID'][0][0:4]
+    gender_count = df.groupby(by=['gender'])['quotation'].count().to_frame(name=year).T
+    return gender_count
+
+def gather_all_years_to_one_df(df_list):
+    """
+        Function to merge all the years in one dataframe
+    :param df: list of Dataframes 
+    :return gender_count_all_years: dataframe of the number of quotes for all the years 
+    :return year_list: list of years (integer format)
+    """
+    gender_list = []
+    year_list = []
+    for df in df_list:
+        year = df['quoteID'][0][0:4]
+        gender_count = count_by_gender(df)
+        gender_list.append(gender_count)
+        year_list.append(int(year))
+    gender_count_all_years = pd.concat(gender_list)
+    return gender_count_all_years, year_list
+
+def gender_all_years_extension(df_list):
+    """
+        Function to add columns with the relative number of quotes for both gender for all the Dataframes in `df_list`
+    :param df_list: list of Dataframes 
+    :return gender_all_years: DataFrame with added columns `% Female/Male` and the `year`
+    """
+    gender_all_years, year_list = gather_all_years_to_one_df(df_list)
+    gender_all_years['% Female'] = gender_all_years['Female']/(gender_all_years['Female'] + gender_all_years['Male'])
+    gender_all_years['% Male'] = gender_all_years['Male']/(gender_all_years['Female'] + gender_all_years['Male'])
+    gender_all_years['year'] = year_list
+    return gender_all_years
+
+### Number of quotes per age 
+def dateofbirth_to_timestamp(df):
+    """
+        Function to transform the date of birth to a timestamp format
+    :param df: dataframe 
+    :return: dataframe with transformed columns `date_of_birth`
+    """
+    df['date_of_birth'] = extract_element_from_series(df['date_of_birth'])
+    df['date_of_birth'] = df['date_of_birth'].replace(to_replace='[\+Z]',value='', regex=True)                                                                              
+    df['date_of_birth'] = pd.to_datetime(df['date_of_birth'], format='%Y-%m-%dT%H:%M:%S', errors='coerce')
+    return df
+
+def compute_age(df):
+    """
+        Function to compute the age from the `date_of_birth` and today's date
+    :param df: dataframe
+    :return: dataframe with added column `age`
+    """
+    quote_date = pd.to_datetime(df["quoteID"].apply(lambda x: x[:10]), format='%Y-%m-%d', errors='coerce') #to replace with date column in the future
+    df['age'] = (quote_date.year - df.date_of_birth.dt.year) - ((quote_date.month - df.date_of_birth.dt.month) < 0)
+    return df
+
+def compute_age_range(df, bins):
+    """
+        Function to compute the age range in intervals of 10 years
+    :param df: dataframe
+    :param bins: array to define the length if intervals 
+    :return: dataframe with added column `age_range`
+    """
+    df["age_range"] = pd.cut(df["age"], bins)
+    return df
+
+def compute_age_and_agerange(df, bins):
+    """
+        Function to call functions computing age and age range
+    :param df: dataframe
+    :param bins: array to define the length if intervals
+    :return: dataframe with added columns `age` and `age_range`
+    """
+    df = dateofbirth_to_timestamp(df)
+    df = compute_age(df)
+    df = compute_age_range(df, bins)
+    return df
+
+### Number of quotes per continent 
+def add_continent(df, countries_to_continent):
+    """
+        Function to associate the corresponding continent the country of citizenship
+    :param df: dataframe
+    :param countries_to_continent: dataframe with all the countries and their corresponding continent
+    :return: dataframe with added column `Continent`
+    """
+    df = pd.merge(df, countries_to_continent, left_on='citizenship', right_on='Country', copy=False)
+    df = df.drop('Country', axis=1)
+    return df
+
+### Number of quotes per categories
+def transform_tags(df):
+    """
+        Function to transform the nested tags to a usable string, keeping only the first tag if several
+    :param df: dataframe
+    :return: array of string of the tags
+    """
+    col_tags = []
+    for i in range(len(df)):
+        array = df['tags'][i]
+        tags = [var for var in array if var]
+        if tags : 
+            tags = tags[0][0]
+        else :
+            tags = 'undefined'
+        col_tags.append(tags)
+    return col_tags
+
+
+##### Perform tests #####
+def perform_t_test(Series1,Series2):
+    """
+        Function to perform at t-test between two distributions (Null hypothesis stating that the two independant distributions have equal means)
+    :param Series1: Series of values 
+    :return pvalue: pvalue of the t-test
+    """
+    stattest, pvalue = stats.ttest_ind(Series1,Series2, equal_var = True)
+    return pvalue
+
+def perform_linear_regression(outcome, pred, df):
+    """
+        Function to compute the linear regression using the formula: outcome ~ pred
+        param outcome: outcome of the linear model
+        param pred: predictor of the linear model
+        return: results (df containing coefficients, standard deviations and pvalues)
+    """
+    # Declares the model
+    mod = smf.ols(formula=outcome +'~'+pred, data=df)
+    np.random.seed(2) # Fits the model (find the optimal coefficients, adding a random seed ensures consistency)
+    res = mod.fit()
+    print(res.summary())
+
+    # coefficients
+    coeff = pd.Series(res.params.values)
+    m = res.params.values[1]
+
+    # p-values
+    p_value0 = float(res.pvalues[0])
+    p_value1 = float(res.pvalues[1])
+    p_values = [p_value0, p_value1]
+    
+    # standard errors
+    std_errors = pd.Series(res.bse.values)
+    
+    #results 
+    results = pd.DataFrame()
+    results['coeff'] = coeff
+    results['std'] = std_errors
+    results['p_value'] = p_values
+    results.rename(index={0: "b", 1: "m"})
+    return results
+
+
+##### Plots functions #####
+### Plot number of quotes per gender 
+def plot_gender_all_years(gender_all_years):
+    fig1 = (gender_all_years[['Male','Female']]/1000000).plot(kind='bar', title='Number of quotations depending on the gender in absolute value for each year', rot=0, xlabel='years', ylabel='number of quotations [in Millions]')
+    fig2 = gender_all_years[['perc_male','perc_female']].plot(kind='bar', title='Number of quotations depending on the gender in % for each year', rot=0, xlabel='years', ylabel='% of quotations')
+
+### Plot number of quotes per age 
+def plot_quotes_age(df, age_threshold):
+    """
+        Function to plot the number of quotes depending on `age_range` and `gender`
+    :param df: dataframe
+    :param age_threshold: consider only speakers with an age smaller than `age_threshold`
+    """
+    f = plt.figure(figsize=(16,6))
+    ax = sns.countplot(data=df[df["age"]<age_threshold], x='age_range', hue ='gender')
+    plt.xlabel('Age intervals')
+    plt.ylabel('Number of quotes')
+    year = df['quoteID'][0][0:4]
+    plt.title('Number of quotes depending on age and gender for the year '+ year)
+    #labels = ['[0,10]','[10,20]','[20,30]','[30,40]','[50,60]','[60,70]','[70,80]','[80,90]','[90,100]']
+    #ax.set_xticklabels(labels)
+
+### Plot number of quotes per country    
+def plot_quotes_country(df, threshold_nber):
+    """
+        Function to plot the number of quotes depending on `citizenship` and `gender`
+    :param df: dataframe
+    :param threshold_nber: consider only countries of citizenship for which there is at least `threshold_nber` of quotes
+    """
+    df_citizenship_count = df.groupby(['gender', 'citizenship'])['quoteID'].count().sort_values(ascending=False).to_frame(name='count').reset_index()
+    df_citizenship_count = df_citizenship_count[df_citizenship_count['count']>threshold_nber]
+    
+    f = plt.figure(figsize=(18,6))
+    ax = sns.barplot(data=df_citizenship_count, x='citizenship',y='count', hue='gender')
+    plt.xlabel('Citizenship')
+    plt.ylabel('Number of quotes')
+    plt.legend(loc = 'upper right')
+    year = df['quoteID'][0][0:4]
+    plt.title('Number of quotes above '+ str(threshold_nber) +' depending on gender and citizenship for the year '+year)
+    locs, labels = plt.xticks()
+    plt.setp(labels, rotation=90)
+    ax.set_yscale('log')
+    
+### Plot number of quotes per continent  
+def plot_quotes_continent(df):
+    """
+        Function to plot the number of quotes depending on `continent` and `gender`
+    :param df: dataframe
+    """
+    f = plt.figure(figsize=(12,6))
+    ax = sns.countplot(data=df, x='Continent', hue='gender', order=df['Continent'].value_counts().index)
+    plt.xlabel('Continent')
+    plt.ylabel('Number of quotes')
+    year = df['quoteID'][0][0:4]
+    plt.title('Number of quotes depending on gender and continent for the year '+year)
+    
+### Plot number of quotes per media
+def plot_quotes_media(df):
+    """
+        Function to plot the number of quotes depending on `sitenames` and `gender`
+    :param df: dataframe
+    """
+    f = plt.figure(figsize=(14,6))
+    ax = sns.countplot(data=df, x='sitenames', hue='gender', order=df['sitenames'].value_counts().index)
+    plt.xlabel('Media')
+    plt.ylabel('Number of quotes')
+    plt.title('Number of quotes depending on gender and media')
+    locs, labels = plt.xticks()
+    plt.setp(labels, rotation=45,  horizontalalignment='right')
+
+### Plot number of quotes per categories 
+def plot_quotes_categories(df):
+    """
+        Function to plot the number of quotes depending on `tags` and `gender`
+    :param df: dataframe 
+    """
+    f = plt.figure(figsize=(14,6))
+    ax = sns.countplot(data=df, x='tags', hue='gender', order=df['tags'].value_counts().index)
+    plt.xlabel('Category')
+    plt.ylabel('Number of quotes')
+    year = df['quoteID'][0][0:4]
+    plt.title('Number of quotes depending on gender and media for the year '+year)
+    locs, labels = plt.xticks()
+    plt.setp(labels, rotation=45,  horizontalalignment='right')
+
+### Plot length of quotes
+def plot_quotes_distribution(df):
+    """
+        Function to plot the distribution of the quotes length depending on `gender`
+    :param df: dataframe
+    """ 
+    f = sns.histplot(x=df.loc[df['gender'] == 'Male']['quotation'].str.len(), bins=200, alpha=0.5, log_scale = [False,True], label='Male')
+    f = sns.histplot(x=df.loc[df['gender'] == 'Female']['quotation'].str.len(), bins=200, alpha=0.5, color='orange', label = 'Female')
+    plt.xlabel('Quotation length')
+    plt.title('Quotation length distribution per gender')
+    plt.legend()
+    
+def plot_avg_quotes_length(df, conf_int):
+    """
+        Function to plot average length of quotes and confidence intervals depending on `gender`
+    :param df: dataframe 
+    :param conf_int: confidence interval for the plot
+    """
+    year = df['quoteID'][0][0:4]
+    f = plt.figure(figsize=(8,10))
+    sns.catplot(x='gender', y=df['quotation'].str.len(), kind='bar', data = df, height=5, aspect=0.8, ci=conf_int)
+    plt.title('Average quotation length depending on gender for the year '+ year)
+    plt.ylabel('Quotation length')
+    #plt.tight_layout()
+    plt.ylim(113,126)
+    plt.show()
+    
