@@ -2,6 +2,7 @@
 
 ## Contents
 
+* [Project directory](#project-directory)
 * [Abstract](#abstract)
 * [Dataset](#dataset)
 * [Research questions](#research-questions)
@@ -10,7 +11,9 @@
 * [Timeline](#timeline)
 * [Team organization](#team-organization)
 
-## Project directory
+
+## Project directory 
+:file_folder: 
 
 |--- **M2_pre_processing.ipynb**: Notebook to clean and organize data for the project.\
 |--- **M2_cleaning.py**: Script containing functions for the data cleaning. Called as a module in `M2_pre_processing.ipynb`.\
@@ -18,7 +21,7 @@
 |--- **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Called as a module in both notebooks.\
 |--- **M2_plots.py**: Script containing functions for data analysis in `Milestone_2.ipynb`\
 
-## Abstract
+## Abstract 
 
 Females' equal participation in all facets of society is a fundamental human right. Yet, around the world, they have historically been underrepresented, including in mainstream media. [Studies](https://www.tandfonline.com/doi/full/10.1080/23257962.2016.1260445) have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to explore whether media coverage gives the same possibilities regardless of gender.
 The goal is to highlight possible trends about which media sources quote females and analyse their proportion of published quotations in comparison to males. Additionally, certain domains are known to have a gender gap. This study is therefore interested in understanding which fields present differences between genders, may it be politics, sports, culture or others. The difference between countries, year and media source will also be analysed as well as the impact of such factors on the length and frequency of female quotes.
@@ -29,7 +32,7 @@ We use the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 
 
 The cleaned data is saved on this [drive](https://drive.google.com/drive/folders/1bP67GGJyPXD7bCr5c6f7O2fM40AWpXJN?usp=sharing). A `README_DRIVE.md` in the folder precises the data contained.
 
-## Research questions
+## Research questions 
 
 Throughout this study we aim to answer a main question: "Is the representation equal between males and females in media?". The following questions will guide us through the project:
 
@@ -46,7 +49,7 @@ Throughout this study we aim to answer a main question: "Is the representation e
 - Provided data from Wikidata 
 - dataset which contains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
 
-## Methods
+## Methods 
 
 **Data filtering**
 
@@ -106,7 +109,7 @@ Present results according to the information that needs to be transmitted:
 - Finally, we could present detailed results from the most popular/respected sources.
 
 
-## Timeline
+## Timeline 
 
 - **12/11**: Hand in Milestone 2 having done part of the initial analysis on data (for the top 10 media sources) 
 - **15/11**: Having finished the updated cleaning using additional top sites or take the most popular news as my be found on the web. We will also add more quote categories to analyse in order to increase the number of tags.
