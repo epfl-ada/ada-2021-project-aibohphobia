@@ -7,17 +7,16 @@
 * [Research questions](#research-questions)
 * [Additional datasets](#additional-datasets)
 * [Methods](#methods)
-* [Libraries of interest](#libraries-of-interest)
 * [Timeline](#timeline)
 * [Team organization](#team-organization)
 
 ## Project directory
 
-|__ **M2_pre_processing.ipynb**: Notebook to clean and organize data for the project.\
-|__ **M2_cleaning.py**: Script containing functions for the data cleaning. Called as a module in `M2_pre_processing.ipynb`.\
-|__ **Milestone_2.ipynb**: Notebook containing the analysis done.\
-|__ **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Called as a module in both notebooks.\
-|__ **M2_plots.py**: Script containing functions for data analysis in `Milestone_2.ipynb`
+|--- **M2_pre_processing.ipynb**: Notebook to clean and organize data for the project.\
+|--- **M2_cleaning.py**: Script containing functions for the data cleaning. Called as a module in `M2_pre_processing.ipynb`.\
+|--- **Milestone_2.ipynb**: Notebook containing the analysis done.\
+|--- **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Called as a module in both notebooks.\
+|--- **M2_plots.py**: Script containing functions for data analysis in `Milestone_2.ipynb`\
 
 ## Abstract
 
