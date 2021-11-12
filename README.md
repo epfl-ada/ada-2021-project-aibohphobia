@@ -28,27 +28,25 @@ The goal is to highlight possible trends about which media sources quote females
 
 ## The dataset
 
-The dataset contains the quotes from the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 2016-2020. For each quote, this dataset includes information on the speaker (along with their qid from [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)), probability of being the speaker as well as the source of the quote.
+We use the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 2016-2020. For each quote, it includes information on the speaker (along with their qid from [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)) as well as the quote source.
 
-Once the data has been cleaned for each year, it is saved on this [drive](https://drive.google.com/drive/folders/1bP67GGJyPXD7bCr5c6f7O2fM40AWpXJN?usp=sharing). The folder also contains a `README_DRIVE.md` precising the data that can be found.
+Once the data has been cleaned, it is saved on this [drive](https://drive.google.com/drive/folders/1bP67GGJyPXD7bCr5c6f7O2fM40AWpXJN?usp=sharing). A `README_DRIVE.md` in the folder precises the data that can be found.
 
 ## Research questions
 
-Throughout this study we aim to answer a main question: "Is the representation equal between males and females in media?". In order to answer this complex question, we have identified the following research questions which will guide us in the project: 
+Throughout this study we aim to answer a main question: "Is the representation equal between males and females in media?". The following questions which will guide us in the project: 
 
 - How does the distribution of quotes based on gender vary across countries, topics, location and time?
-- Is there a tendency in each category for a males to have longer quotes than females?
+- Do males have longer quotes than females?
 - Are males more likely to be quoted in highly respected media? 
-- Are there any blind spots in media where females are especially neglected?
+- Are there any blind spots in media where females are neglected?
 - Is there a difference in how females/males at a certain age are quoted?
 - Are countries known to promote gender equality more likely to reflect this in media compared to the rest of the world ?
 
 
 ## Additional datasets
 
-We currently use the URL given by the QuoteBank dataset to retrieve information about the media though the wikidata API such as its country of origin.
-
-We also add a dataset which countains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
+We use the provided data from Wikidata and add a dataset which contains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
 
 ## Methods
 
@@ -61,20 +59,19 @@ We limited the dataset by:
 
 **Data cleaning:**
 
-A function is used to clean the data in the following ways:
-- Remove "None" speakers 
-- Remove speakers havong a low porbability (50% threshold)
-- Verify quotes are non empty 
+The data is cleaned by: 
+- Removing "None" speakers 
+- Removing speakers havong a low porbability (50% threshold)
+- Verifying quotes are non empty 
 
 **Additional data extraction**
 
-Using the URL and data from Wikidata provided, we obtain further information:
-- Tags are added if the url contains specific mentions of a topic from a predefined list (e.g.: sports, business, music...)
+Using the URL and data from Wikidata: 
+- Tags are added if the URL contains words of a topic from a predefined list (e.g.: sports, business, ...)
 - Using the URLs from QuoteBank, we extract features such as the country of origin from the newspaper using WikiData API
 - Change QIDs to labels (e.g.: "Q31" to "Belgium")
 - Using the QID the speaker's nationality, date of birth and gender are found
-- The age (for the speakers still alive today) is calculated at the moment of the quote
-- The URL is used to query the wikidata to find the country of origin of media which cited the quote
+- The speaker age (up to 100 yrs) is calculated at the moment of the quote.
 
 **Initial analysis of data**
 
@@ -104,11 +101,11 @@ Perform statistical tests to see if the difference:
 
 **Results**
 
-Results can be presented in several ways, depending on the information that needs to be transmitted:
-- For geographical trends, we could present a world map indicating the male-female difference for the countries studied. We could also add the category where females are most (or least) quoted, or mention rapidly growing categories where females are increasingly gaining floor over the years. This would give indications concerning how the media in that country represents the genders. 
-- The results could also be presented by category or subject, showing how quotes are distributed amongst genders within a certain subject.
+Results will be presented according to the information that needs to be transmitted:
+- Geographical trends; could present a world map indicating the male-female difference for the countries studied. We could also add the category where high differences were found, or ones where proportions aremale/female seel to be chaning over the years.
+- Media topics: show how quotes are distributed amongst genders within a certain subject.
 - To these visualisations, we could add extra statistics on the average length of the quote or age of the speaker.
-- Finally, we could present detailed results on a few known media (from the "highly respected" set)
+- Finally, we could present detailed results from the "highly respected sources" set.
 
 
 ## Timeline
