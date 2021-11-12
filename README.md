@@ -13,18 +13,11 @@
 
 ## Project directory
 
-|__ M2_pre_processing.ipynb\
-|__ M2_cleaning.py\
-|__ Milestone_2.ipynb\
-|__ M2_media_wikidata.py\
-|__ M2_plots.py
-
-**M2_pre_processing.ipynb**: Notebook to clean data and organize it for the data analysis.\
-**M2_cleaning.py**: script containing functions for the data cleaning that are called as a module in `M2_pre_processing.ipynb`.\
-**M2_initial_analysis.ipynb**: Notebook containing the analysis done on the cleaned data.\
-**M2_media_wikidata.py**: script containing functions for extracting data through the wikidata API. Are called as a module in `M2_pre_processing.ipynb` and `M2_initial_analysis.ipynb`.\
-**M2_plots.py**: script containing functions called as a module during the data analysis in `Milestone_2.ipynb`.
-
+|__ **M2_pre_processing.ipynb**: Notebook to clean data and organize it for the data analysis.\
+|__ **M2_cleaning.py**: Script containing functions for the data cleaning that are called as a module in `M2_pre_processing.ipynb`.\
+|__ **Milestone_2.ipynb**: Notebook containing the analysis done on the cleaned data.\
+|__ **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Are called as a module in `M2_pre_processing.ipynb` and `M2_initial_analysis.ipynb`.\
+|__ **M2_plots.py**: Script containing functions called as a module during the data analysis in `Milestone_2.ipynb`
 
 ## Abstract
 
@@ -43,9 +36,7 @@ Once the data has been cleaned for each year, it is saved on this [drive](https:
 
 Throughout this study we aim to answer a main question: "Is the representation equal between males and females in media?". In order to answer this complex question, we have identified the following research questions which will guide us in the project: 
 
-- How does the distribution of quotes based on gender vary across countries?
-- How does the distribution of quotes based on gender vary across topics?
-- How does the distribution of quotes between genders evolve in time, geographically and thematically?
+- How does the distribution of quotes based on gender vary across countries, topics, location and time?
 - Is there a tendency in each category for a males to have longer quotes than females?
 - Are males more likely to be quoted in highly respected media? 
 - Are there any blind spots in media where females are especially neglected?
@@ -55,8 +46,7 @@ Throughout this study we aim to answer a main question: "Is the representation e
 
 ## Additional datasets
 
-As we are interested in linking the quote to a geographical place, we do so by taking the geographical location of the media.
-We currently use the URL given by the QuoteBank dataset to retrieve information about the media though the wikidata API.
+We currently use the URL given by the QuoteBank dataset to retrieve information about the media though the wikidata API such as its country of origin.
 
 We also add a dataset which countains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
 
