@@ -18,7 +18,7 @@ sns.set_style("darkgrid", {'axes.grid' : False, 'ytick.left': True, 'xtick.botto
 
 
 ##### Functions to compute/calculate #####
-### Number of quotes per gender 
+### Number of quotes per gender    
 def count_by_gender(df):
     """
         Function compute the number of quotes depending on `gender`
@@ -77,7 +77,7 @@ def compute_age(df):
     :return: dataframe with added column `age`
     """
     quote_date = pd.to_datetime(df["quoteID"].apply(lambda x: x[:10]), format='%Y-%m-%d', errors='coerce') #to replace with date column in the future
-    df['age'] = (quote_date.year - df.date_of_birth.dt.year) - ((quote_date.month - df.date_of_birth.dt.month) < 0)
+    df['age'] = (quote_date.dt.year - df.date_of_birth.dt.year) - ((quote_date.dt.month - df.date_of_birth.dt.month) < 0)
     return df
 
 def compute_age_range(df, bins):
@@ -108,11 +108,11 @@ def add_continent(df, countries_to_continent):
         Function to associate the corresponding continent the country of citizenship
     :param df: dataframe
     :param countries_to_continent: dataframe with all the countries and their corresponding continent
-    :return: dataframe with added column `Continent`
+    :return: column `Continent`
     """
     df = pd.merge(df, countries_to_continent, left_on='citizenship', right_on='Country', copy=False)
     df = df.drop('Country', axis=1)
-    return df
+    return df["Continent"]
 
 ### Number of quotes per categories
 def transform_tags(df):
@@ -132,8 +132,17 @@ def transform_tags(df):
         col_tags.append(tags)
     return col_tags
 
+### Quotes length 
+def compute_quotation_length(df):
+    """
+        Function to compute the length of the quote 
+    :param df: dataframe
+    :return: dataframe with added column `quotation_length`
+    """
+    df['quotation_length'] = df['quotation'].str.len()
+    return df 
 
-##### Perform tests #####
+##### Perform any t-test #####
 def perform_t_test(Series1,Series2):
     """
         Function to perform at t-test between two distributions (Null hypothesis stating that the two independant distributions have equal means)
@@ -180,8 +189,10 @@ def perform_linear_regression(outcome, pred, df):
 ##### Plots functions #####
 ### Plot number of quotes per gender 
 def plot_gender_all_years(gender_all_years):
+    #fig1 = plt.figure(figsize=(12,6))
+    #fig2 = plt.figure(figsize=(12,6))
     fig1 = (gender_all_years[['Male','Female']]/1000000).plot(kind='bar', title='Number of quotations depending on the gender in absolute value for each year', rot=0, xlabel='years', ylabel='number of quotations [in Millions]')
-    fig2 = gender_all_years[['perc_male','perc_female']].plot(kind='bar', title='Number of quotations depending on the gender in % for each year', rot=0, xlabel='years', ylabel='% of quotations')
+    fig2 = gender_all_years[['% Male','% Female']].plot(kind='bar', title='Number of quotations depending on the gender in % for each year', rot=0, xlabel='years', ylabel='% of quotations')
 
 ### Plot number of quotes per age 
 def plot_quotes_age(df, age_threshold):
@@ -257,6 +268,7 @@ def plot_quotes_categories(df):
     ax = sns.countplot(data=df, x='tags', hue='gender', order=df['tags'].value_counts().index)
     plt.xlabel('Category')
     plt.ylabel('Number of quotes')
+    ax.set_yscale('log')
     year = df['quoteID'][0][0:4]
     plt.title('Number of quotes depending on gender and media for the year '+year)
     locs, labels = plt.xticks()
@@ -268,11 +280,14 @@ def plot_quotes_distribution(df):
         Function to plot the distribution of the quotes length depending on `gender`
     :param df: dataframe
     """ 
-    f = sns.histplot(x=df.loc[df['gender'] == 'Male']['quotation'].str.len(), bins=200, alpha=0.5, log_scale = [False,True], label='Male')
-    f = sns.histplot(x=df.loc[df['gender'] == 'Female']['quotation'].str.len(), bins=200, alpha=0.5, color='orange', label = 'Female')
-    plt.xlabel('Quotation length')
-    plt.title('Quotation length distribution per gender')
-    plt.legend()
+    f = plt.figure(figsize=(14,6))
+    f = sns.histplot(data = df, y='quotation_length', hue='gender', bins=200, alpha=0.8, log_scale = [True,False], 
+                     hue_order = ['Female', 'Male'], palette=[colors[1], colors[0]])
+    #f = sns.histplot(y=df.loc[df['gender'] == 'Female']['quotation'].str.len(), bins=200, alpha=0.8, color=colors[1], label = 'Female')
+    plt.ylabel('Quotation length')
+    year = df['quoteID'][0][0:4]
+    plt.title('Quotation length distribution per gender for the year '+year)
+    plt.show()
     
 def plot_avg_quotes_length(df, conf_int):
     """
@@ -282,10 +297,9 @@ def plot_avg_quotes_length(df, conf_int):
     """
     year = df['quoteID'][0][0:4]
     f = plt.figure(figsize=(8,10))
-    sns.catplot(x='gender', y=df['quotation'].str.len(), kind='bar', data = df, height=5, aspect=0.8, ci=conf_int)
+    sns.catplot(x='gender', y=df['quotation_length'], kind='bar', data = df, height=5, aspect=0.8)#, ci=conf_int)
     plt.title('Average quotation length depending on gender for the year '+ year)
     plt.ylabel('Quotation length')
     #plt.tight_layout()
     plt.ylim(113,126)
     plt.show()
-    
