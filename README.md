@@ -118,7 +118,8 @@ Results can be presented in several ways, depending on the information that need
 ## Timeline
 
 - 12/11: Hand in Milestone 2 having done part of the initial analysis on data (for the top 10 media sources) 
-- 19/11: Finish the basic data analysis using the visualization libraries. We will also add more quote categories to analyse.
+- 15/11: Having finished the updated cleaning using additional top sites or take the most popular news as my be found on the web. We will also add more quote categories to analyse in order to increase the number of tags.
+- 19/11: Finish the basic data analysis using the visualization libraries on the complete data set. 
 - 3/12: Complete with the deeper analysis
 - 17/12: Present results on a github page with our finalised data story
 
@@ -132,8 +133,9 @@ The data visualisation and final presentation of the results can also be divided
 
 ## Questions for TA:
 
-None for now ?
 
+## Note:
+Following the results of our initial analysis, we find that changing the top 10 medias who cite the most quotes to the top 100/1000 most famous medias will bring additional/more insightful information and decrease the number of data.
 
 ### *References:
 (1) -  Michelle Caswell, Alda Allina Migoni, Noah Geraci & Marika Cifor (2017) ‘To Be Able to Imagine Otherwise’: community archives and the importance of representation, Archives and Records, 38:1, 5-26, DOI: 10.1080/23257962.2016.1260445 
