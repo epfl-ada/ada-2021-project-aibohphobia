@@ -159,7 +159,7 @@ def compute_country_from_qid(df, qids_to_country):
     df["media_country_qid"] = extract_element_from_series(df['media_country_qid'])
     df = pd.merge(df, qids_to_country, left_on = 'media_country_qid', right_on='QID', how='left').drop('QID', axis=1)
     df = df.rename(columns = {"Country": "media_country"})
-    return df
+    return df["media_country"]
 
 ##### Perform any t-test #####
 def perform_t_test(Series1,Series2):
