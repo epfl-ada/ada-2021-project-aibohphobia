@@ -50,14 +50,11 @@ We currently use the URL given by the QuoteBank dataset to retrieve information 
 
 We also add a dataset which countains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
 
-As of now we do not plan on using any additional datasets.
-
-
 ## Methods
 
 **Data filtering**
 
-In order to limit the size of the data we are working on, for each year we:
+We limited the dataset by:
 - Computed the number of occurrences of each media source (by extracting the site name from the URL)
 - Selected the top 10 media as a proxy for popularity 
 - Filtered the data to keep only quotes that were mentioned in the top 10 media sources
@@ -66,15 +63,15 @@ In order to limit the size of the data we are working on, for each year we:
 
 A function is used to clean the data in the following ways:
 - Remove "None" speakers 
-- Remove speakers with a probability inferior to a certain threshold (50%)
-- Make sure quotes are non empty 
+- Remove speakers havong a low porbability (50% threshold)
+- Verify quotes are non empty 
 
 **Additional data extraction**
 
 Using the URL and data from Wikidata provided, we obtain further information:
 - Tags are added if the url contains specific mentions of a topic from a predefined list (e.g.: sports, business, music...)
 - Using the URLs from QuoteBank, we extract features such as the country of origin from the newspaper using WikiData API
-- Change QIDs to labels (e.g.: "Q31"is changed to "Belgium")
+- Change QIDs to labels (e.g.: "Q31" to "Belgium")
 - Using the QID the speaker's nationality, date of birth and gender are found
 - The age (for the speakers still alive today) is calculated at the moment of the quote
 - The URL is used to query the wikidata to find the country of origin of media which cited the quote
@@ -82,12 +79,10 @@ Using the URL and data from Wikidata provided, we obtain further information:
 **Initial analysis of data**
 
 1. Comparison of number of male versus female quotes
-
 - Overall difference in count of males versus females, over all years 
 - Overall count of male versus female quotes, per year, per category, per geographical location and a combination of these
 
 2. Tests for statistical significance 
-
 Perform statistical tests to see if the difference:
 - Between counts of males and females per year is statistically significant
 - Per year and per location/(resp. category) is statistically significant
@@ -95,27 +90,19 @@ Perform statistical tests to see if the difference:
 **Deeper analysis**
 
 1. Comparison of media coverage depending on gender in highly repsected media
-
-- Define a list of "highly respected" sources, and re-filter the data to keep only the quotes that were quoted in these sources
-- Compare the number of males and females that have been quoted and test for statistical significance
+- Define a list of "highly respected" sources, re-filter the data to keep only these sources and redo previous analysis.
 
 2. Comparison in length of quote
-
 - Perform statistical tests to analyse whether a difference in the length of quotes is significant between years and location or category
 
 3. Media coverage in function of age
-
-- Group speakers into classes of age and analyse trends that can appear with respect to aforementioned criteria between genders. 
+- Group speakers into age grpoups and analyse trends between genders. 
 
 4. Provided enough time, comparison of media coverage depending on gender in most popular media
-
-- Instead of filtering the dataset to keep only the "top k sources of the highest count", filter the quotes based on a list of most popular media sources will bring additional/more insightful information
-
+- Filter the quotes based on a list of most popular media sources to bring additional/more insightful information instead of filtering the dataset to keep only the "top k sources of the highest count".
 
 
 **Results**
-
-In this part, we want to study the findings obtained during our analysis in order to formulate and present the trends or any interesting results that we might have uncovered.
 
 Results can be presented in several ways, depending on the information that needs to be transmitted:
 - For geographical trends, we could present a world map indicating the male-female difference for the countries studied. We could also add the category where females are most (or least) quoted, or mention rapidly growing categories where females are increasingly gaining floor over the years. This would give indications concerning how the media in that country represents the genders. 
@@ -123,17 +110,6 @@ Results can be presented in several ways, depending on the information that need
 - To these visualisations, we could add extra statistics on the average length of the quote or age of the speaker.
 - Finally, we could present detailed results on a few known media (from the "highly respected" set)
 
-
-
-## Libraries of interest
-
-- Request: Extracting data
-- Pandas: Manipulating data
-- Seaborn/Matplotlib: Graphs 
-- URL parser: Parsing URLS
-- Statsmodel: Statistics library
-- Bokeh: Interactive plotting for advanced visualization 
-- Nltk: tokenising words and finding synonyms
 
 ## Timeline
 
@@ -145,9 +121,8 @@ Results can be presented in several ways, depending on the information that need
 
 ## Team organization 
 
-For the initial analysis, the tasks can be split depending on whether the analysis is done per location or per category.
-For the deeper analysis, the tasks can be split into 3 parts (analysis on quote length, on age and on the highly respected set)
-The data visualisation and final presentation of the results can also be divided according to the message that we want to transmit. This means that team's efforts will be dedicated in part to preparing the map, the categories and the highly respected media respectively.
-
+- Initial analysis: tasks can be split in analysis per location, category and year. 
+- Deeper analysis: tasks can be split into analysis on quote length, on age and on the highly respected set
+- The data visualisation and final presentation can be divided into putting results onto a map, presenting results per media topics, highly respected media, speaker age and quote length.
 
 
