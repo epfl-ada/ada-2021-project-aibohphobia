@@ -2,6 +2,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from statsmodels.stats import diagnostic
+from scipy import stats
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+
+
 
 from M2_cleaning import *
 
@@ -53,8 +60,8 @@ def gender_all_years_extension(df_list):
     :return gender_all_years: DataFrame with added columns `% Female/Male` and the `year`
     """
     gender_all_years, year_list = gather_all_years_to_one_df(df_list)
-    gender_all_years['% Female'] = gender_all_years['Female']/(gender_all_years['Female'] + gender_all_years['Male'])
-    gender_all_years['% Male'] = gender_all_years['Male']/(gender_all_years['Female'] + gender_all_years['Male'])
+    gender_all_years['percentage_female'] = gender_all_years['Female']/(gender_all_years['Female'] + gender_all_years['Male'])
+    gender_all_years['percentage_male'] = gender_all_years['Male']/(gender_all_years['Female'] + gender_all_years['Male'])
     gender_all_years['year'] = year_list
     return gender_all_years
 
@@ -142,6 +149,18 @@ def compute_quotation_length(df):
     df['quotation_length'] = df['quotation'].str.len()
     return df 
 
+### compute_country_from_qid
+def compute_country_from_qid(df):
+    """
+        Function to compute the name of the countries based on their qid
+    :param df: dataframe
+    :return: dataframe with added column `media_country`
+    """
+    df["media_country_qid"] = extract_element_from_series(df['media_country_qid'])
+    df = pd.merge(df, qid_country, left_on = 'media_country_qid', right_on='QID', how='left').drop('QID', axis=1)
+    df.rename({"Country": "media_country"})
+    return df
+
 ##### Perform any t-test #####
 def perform_t_test(Series1,Series2):
     """
@@ -188,11 +207,15 @@ def perform_linear_regression(outcome, pred, df):
 
 ##### Plots functions #####
 ### Plot number of quotes per gender 
+
 def plot_gender_all_years(gender_all_years):
-    #fig1 = plt.figure(figsize=(12,6))
-    #fig2 = plt.figure(figsize=(12,6))
-    fig1 = (gender_all_years[['Male','Female']]/1000000).plot(kind='bar', title='Number of quotations depending on the gender in absolute value for each year', rot=0, xlabel='years', ylabel='number of quotations [in Millions]')
-    fig2 = gender_all_years[['% Male','% Female']].plot(kind='bar', title='Number of quotations depending on the gender in % for each year', rot=0, xlabel='years', ylabel='% of quotations')
+    """
+        Function to plot the number of quotes depending on `gender`
+    :param gender_all_years: data frame with percentage of males/females
+    """    
+    
+    fig1 = (gender_all_years[['Male','Female']]/1000000).plot(kind='bar', title='Number of quotations depending on the gender in absolute value for each year', rot=0, xlabel='Years', ylabel='Number of quotations \n [in Millions]', figsize=(16,6))
+    fig2 = gender_all_years[['percentage_male','percentage_female']].plot(kind='bar', title='Number of quotations depending on the gender in % for each year', rot=0, xlabel='Years', ylabel='% of quotations', figsize=(16,6))
 
 ### Plot number of quotes per age 
 def plot_quotes_age(df, age_threshold):
@@ -303,3 +326,16 @@ def plot_avg_quotes_length(df, conf_int):
     #plt.tight_layout()
     plt.ylim(113,126)
     plt.show()
+
+    
+def plot_quotes_media_country(df):
+    """
+        Function to plot the number of quotes depending on `gender` and `media_country`
+    :param df: dataframe 
+    """
+    f = plt.figure(figsize=(12,6))
+    ax = sns.countplot(data=df_2015, x='media_country', hue='gender', order=df_2015['Country'].value_counts().index)
+    plt.xlabel("Top media's country")
+    plt.ylabel('Number of quotes')
+    year = df_2015['quoteID'][0][0:4]
+    plt.title("Number of quotes depending on gender and media's country for the year "+year)
