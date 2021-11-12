@@ -17,9 +17,9 @@
 
 |--- **M2_pre_processing.ipynb**: Notebook to clean and organize data for the project.\
 |--- **M2_cleaning.py**: Script containing functions for the data cleaning. Called as a module in `M2_pre_processing.ipynb`.\
-|--- **Milestone_2.ipynb**: Notebook containing the analysis done.\
+|--- **M2_initial_analysis.ipynb**: Notebook containing the analysis done.\
 |--- **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Called as a module in both notebooks.\
-|--- **M2_plots.py**: Script containing functions for data analysis in `Milestone_2.ipynb`\
+|--- **M2_plots.py**: Script containing functions for data analysis in `M2_initial_analysis.ipynb`\
 
 ## Abstract 
 
@@ -80,14 +80,13 @@ Using the URL and data from Wikidata:
 - Overall difference in count of males versus females, over all years 
 - Overall count of male/female quotes, per year, per category, per geographical location and a combination of these
 
-2. Tests for statistical significance 
-Perform statistical tests to see if the difference:
-- Between counts of males and females per year is statistically significant
-- Per year and per location/(resp. category) is statistically significant
+2. Tests for statistical significance to see if:
+- the percentage of quotes said by females is evolving over the years (using linear regression)
+- the difference in ages of quoted persons (regarding gender) is statistically significant.
 
 **Deeper analysis**
 
-1. Comparison of gender's media coverage in highly repsected media
+1. Comparison of gender's media coverage in highly respected media
 - Define a list of "highly respected" sources, re-filter the data to keep only these sources and redo previous analysis
 
 2. Comparison in length of quote
@@ -97,13 +96,13 @@ Perform statistical tests to see if the difference:
 - Group speakers into age classes and compare between genders 
 
 4. Provided enough time, analysis in most popular media and in highly respected media
-- Redo the analysis, but this time using "most popoular"/"most respected" sources rather than media sources with the highest count in the dataset
+- Redo the analysis, but this time using "most popular"/"most respected" sources rather than media sources with the highest count in the dataset
 
 
 **Results**
 
 Present results according to the information that needs to be transmitted:
-- Geographical trends: could present a world map indicating the male-female difference for the countries studied. We could also add the category where high differences were found, or ones where proportions aremale/female seel to be chaning over the years.
+- Geographical trends: could present a world map indicating the male-female difference for the countries studied. We could also add the category where high differences were found, or ones where proportions are male/female seem to be changing over the years.
 - Media topics: show how quotes are distributed amongst genders within a certain subject.
 - To these visualisations, we could add extra statistics on the average length of the quote or age of the speaker.
 - Finally, we could present detailed results from the most popular/respected sources.
