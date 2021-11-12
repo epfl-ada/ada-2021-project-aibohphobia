@@ -17,7 +17,7 @@
 
 |--- **M2_pre_processing.ipynb**: Notebook to clean and organize data for the project.\
 |--- **M2_cleaning.py**: Script containing functions for the data cleaning. Called as a module in `M2_pre_processing.ipynb`.\
-|--- **Milestone_2.ipynb**: Notebook containing the analysis done.\
+|--- **M2_initial_analysis.ipynb**: Notebook containing the analysis done.\
 |--- **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Called as a module in both notebooks.\
 |--- **M2_plots.py**: Script containing functions for data analysis in `Milestone_2.ipynb`\
 
