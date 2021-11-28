@@ -205,6 +205,30 @@ def perform_linear_regression(outcome, pred, df):
     return results
 
 
+##### Keep only the first category tag per url #####
+
+def keep_first_tag(df):
+    for row_nbr in range(len(df['tags'])):
+        row = df['tags'][row_nbr]
+        for tag_nbr in range(len(row)):
+            tag_list = row[tag_nbr]
+            if len(tag_list)>1: #when there are multiple tags for one site
+                tag_to_keep = [tag_list[0]] #keep only the first one
+                df['tags'][row_nbr][tag_nbr] = tag_to_keep 
+    
+    return df
+
+##### Create a datatframe with the proportion of genders in each category #####
+
+def create_df_categories_proportion(df):
+    df_tags_explode = df.explode("tags").explode("tags")
+    df_tags = df_tags_explode.groupby(["tags","gender"]).quoteID.count().to_frame(name="Count").sort_values(['Count'],ascending=False).reset_index()
+    df_total_per_cat = df_tags.groupby(['tags']).Count.sum().to_frame(name="Total").reset_index()
+    df_tags = df_tags.merge(df_total_per_cat, on='tags')
+    df_tags['Proportion']  = (df_tags['Count']/df_tags['Total'])*100
+    return df_tags
+
+
 ##### Plots functions #####
 ### Plot number of quotes per gender 
 
@@ -294,6 +318,20 @@ def plot_quotes_categories(df):
     ax.set_yscale('log')
     year = df['quoteID'][0][0:4]
     plt.title('Number of quotes depending on gender and media for the year '+year)
+    locs, labels = plt.xticks()
+    plt.setp(labels, rotation=45,  horizontalalignment='right')
+    
+def plot_quotes_categories_proportion(df_tags):
+    """
+        Function to plot the number of quotes depending on `tags` and `gender`
+    :param df: dataframe 
+    """
+    #create plot
+    f = plt.figure(figsize=(18,6))
+    ax = sns.barplot(data=df_tags, x='tags',y='Proportion', hue='gender')
+    plt.xlabel('Category')
+    plt.ylabel('Proportion of quotes')
+    plt.title('Proporion of quotes between genders, per category')
     locs, labels = plt.xticks()
     plt.setp(labels, rotation=45,  horizontalalignment='right')
 
