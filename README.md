@@ -1,11 +1,11 @@
-# Underrepresentation of females in media: a myth or a truth?
+# Underrepresentation of females in media: a myth or a truth? [The datastory](https://lisalrt.github.io/females-in-media/)
 
 TODO for M3 
 - [ ] Upload drive readme
 - [ ] Merge the final df, Lavi and Art 
 - [ ] Make sure that code is documented
 - [ ] Upgreade the research questions here
-- [ ] Link this github to the website for easy access
+- [x] Link this github to the website for easy access
 - [ ] List who did what 
 
 
