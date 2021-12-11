@@ -1,5 +1,14 @@
 # Underrepresentation of females in media: a myth or a truth?
 
+TODO for M3 
+- [ ] Upload drive readme
+- [ ] Merge the final df, Lavi and Art 
+- [ ] Make sure that code is documented
+- [ ] Upgreade the research questions here
+- [ ] Link this github to the website for easy access
+- [ ] List who did what 
+
+
 ## Contents
 
 * [Project directory](#project-directory)
@@ -20,6 +29,7 @@
 |--- **M2_initial_analysis.ipynb**: Notebook containing the analysis done.\
 |--- **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Called as a module in both notebooks.\
 |--- **M2_plots.py**: Script containing functions for data analysis in `M2_initial_analysis.ipynb`\
+|--- **M3_final_analysis.py**: Final notebook extending the M2 pre-processing and initial analysis `M3_final_analysis.ipynb`\
 
 ## Abstract 
 
@@ -37,17 +47,16 @@ The cleaned data is saved on this [drive](https://drive.google.com/drive/folders
 Throughout this study we aim to answer a main question: "Is the representation equal between males and females in media?". The following questions will guide us through the project:
 
 - How does the distribution of quotes based on gender vary across countries, topics, location and time?
-- Do males have longer quotes than females?
-- Are males more likely to be quoted in highly respected media? 
-- Are there any blind spots in media where females are neglected?
+- Are males more likely to be quoted in highly respected media?
 - Is there a difference in how females/males at a certain age are quoted?
-- Are countries known to promote gender equality more likely to reflect this in media compared to the rest of the world ?
 
 
 ## Additional datasets
 
 - Provided data from Wikidata 
 - dataset which contains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
+- The list of most respected media according to [Forbes](https://www.forbes.com/sites/berlinschoolofcreativeleadership/2017/02/01/10-journalism-brands-where-you-will-find-real-facts-rather-than-alternative-facts/?sh=1c18e04de9b5)
+- The list of most read media according to [similarweb](https://www.similarweb.com/top-websites/category/news-and-media/)
 
 ## Methods 
 
@@ -55,8 +64,8 @@ Throughout this study we aim to answer a main question: "Is the representation e
 
 We limited the dataset by:
 - Computed the number of occurrences of each media source (by extracting the site name from the URL)
-- Selected the top 10 media with most counts
-- Filtered the data to keep only quotes that were mentioned in the top 10 media sources
+- Selected the top 116 medias based on this [list](https://www.4imn.com/top200/)
+- Filtered the data to keep only quotes that were mentioned in this top 116
 
 **Data cleaning:**
 
@@ -95,9 +104,6 @@ Using the URL and data from Wikidata:
 3. Media coverage in function of age
 - Group speakers into age classes and compare between genders 
 
-4. Provided enough time, analysis in most popular media and in highly respected media
-- Redo the analysis, but this time using "most popular"/"most respected" sources rather than media sources with the highest count in the dataset
-
 
 **Results**
 
@@ -108,18 +114,12 @@ Present results according to the information that needs to be transmitted:
 - Finally, we could present detailed results from the most popular/respected sources.
 
 
-## Timeline 
 
-- **12/11**: Hand in Milestone 2 having done part of the initial analysis on data (for the top 10 media sources) 
-- **15/11**: Having finished the updated cleaning using additional top sites or take the most popular news as my be found on the web. We will also add more quote categories to analyse in order to increase the number of tags.
-- **19/11**: Finish the basic data analysis using the visualization libraries on the complete data set. 
-- **3/12**: Complete with the deeper analysis
-- **17/12**: Present results on a github page with our finalised data story
+## Team contributions 
 
-## Team organization 
-
-- Initial analysis: tasks can be split in analysis per location, category and year. 
-- Deeper analysis: tasks can be split into analysis on quote length, on age and on the highly respected set
-- The data visualisation and final presentation can be divided into putting results onto a map, presenting results per media topics, highly respected media, speaker age and quote length.
+Lisa: Plotting graphs during data analysis, preliminary data analysis;
+Arhtur: 
+Lavinia
+Sélène and Lisa: Writing up the report or the data story, preparing the final presentation.
 
 
