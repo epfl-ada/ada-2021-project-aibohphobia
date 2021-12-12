@@ -126,8 +126,15 @@ Other interesting results may be found in the notebook `M3_final_analysis.ipynb`
 ## Team contributions 
 
 Lisa: Plotting graphs during data analysis, preliminary data analysis, webmaster, datastory
-Arhtur: Code for part 1 of the data story
-Lavinia:Data scrapping from wikidata, part 2 of the data story, README
+
 Sélène: Retrieving tags, webmaster, datastory, 
+
+Lavinia:Data scrapping from wikidata, part 2 of the data story, README
+
+Arhtur: Code for part 1 of the data story
+
+
+
+
 
 
