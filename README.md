@@ -1,6 +1,5 @@
 # Underrepresentation of females in media: a myth or a truth?
 
-[The datastory](https://lisalrt.github.io/females-in-media/)
 
 TODO for M3 
 - [ ] Upload drive readme
@@ -9,7 +8,7 @@ TODO for M3
 - [ ] Upgreade the research questions here
 - [x] Link this github to the website for easy access
 - [ ] List who did what 
-- [ ] Make folders for milestone 2 and 3
+- [x] Make folders for milestone 2 and 3
 
 
 ## Contents
@@ -20,19 +19,21 @@ TODO for M3
 * [Research questions](#research-questions)
 * [Additional datasets](#additional-datasets)
 * [Methods](#methods)
-* [Timeline](#timeline)
-* [Team organization](#team-organization)
+* [Team contributions](#team-contributions)
 
 
 ## Project directory 
-:file_folder: 
+:file_folder: Milestone_2: Updated files given for Milestone 2
 
-|--- **M2_pre_processing.ipynb**: Notebook to clean and organize data for the project.\
-|--- **M2_cleaning.py**: Script containing functions for the data cleaning. Called as a module in `M2_pre_processing.ipynb`.\
-|--- **M2_initial_analysis.ipynb**: Notebook containing the analysis done.\
-|--- **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Called as a module in both notebooks.\
-|--- **M2_plots.py**: Script containing functions for data analysis in `M2_initial_analysis.ipynb`\
-|--- **M3_final_analysis.py**: Final notebook extending the M2 pre-processing and initial analysis `M3_final_analysis.ipynb`\
+  |--- **M2_pre_processing.ipynb**: Notebook to clean and organize data for the project.\
+  |--- **M2_cleaning.py**: Script containing functions for the data cleaning. Called as a module in `M2_pre_processing.ipynb`.\
+  |--- **M2_initial_analysis.ipynb**: Notebook containing the analysis done.\
+  |--- **M2_media_wikidata.py**: Script containing functions for extracting data through the wikidata API. Called as a module in both notebooks.\
+  |--- **M2_plots.py**: Script containing functions for data analysis in `M2_initial_analysis.ipynb`\
+
+:file_folder: Milestone_3: Files for Milestone 3
+
+  |--- **M3_final_analysis.ipynb**: Final notebook extending the M2 pre-processing and initial analysis `M3_final_analysis.ipynb`\
 
 ## Abstract 
 
@@ -57,7 +58,7 @@ Throughout this study we aim to answer a main question: "Is the representation e
 ## Additional datasets
 
 - Provided data from Wikidata 
-- dataset which contains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
+- Dataset which contains the countries belonging to each continent in a [csv](https://github.com/dbouquin/IS_608/blob/master/NanosatDB_munging/Countries-Continents.csv) file. 
 - The list of most respected media according to [Forbes](https://www.forbes.com/sites/berlinschoolofcreativeleadership/2017/02/01/10-journalism-brands-where-you-will-find-real-facts-rather-than-alternative-facts/?sh=1c18e04de9b5)
 - The list of most read media according to [similarweb](https://www.similarweb.com/top-websites/category/news-and-media/)
 
@@ -86,7 +87,7 @@ Using the URL and data from Wikidata:
 - Using the QID, find the speaker's nationality, date of birth and gender
 - The speaker's age (up to 100 yrs) is calculated at the moment of the quote.
 
-**Initial analysis of data**
+**Initial analysis of data (Milestone 2)**
 
 1. Comparison of number of male versus female quotes
 - Overall difference in count of males versus females, over all years 
@@ -97,32 +98,43 @@ Using the URL and data from Wikidata:
 - the difference in ages of quoted persons (regarding gender) is statistically significant.
 
 **Deeper analysis**
+For our final data story we split the story in *two*. 
 
-1. Comparison of gender's media coverage in highly respected media
-- Define a list of "highly respected" sources, re-filter the data to keep only these sources and redo previous analysis
+The *first part* looks at the reprensentation of females in countries and then focus on three English speaking countries and digs into:
+- the evolution over the years
+- the number of unique speakers and the most quoted speakers
+- the age distribution between males and females for each of the selected countries
+- the media that quote the top speakers
 
-2. Comparison in length of quote
-- Perform statistical tests to analyse whether a difference in the length of quotes is significant between years and location or category
-
-3. Media coverage in function of age
-- Group speakers into age classes and compare between genders 
+The *second part* dives into the representation of women within a selected list of respected and popular media. 
+- Distribution of females over the years for the two type of medias
+- Looking at what females talk about in the respective media
+- Dig further into the categories were females are the most quoted 
+- Assess the divesity of speakers within each gender
+- Evaluate the quote length based on gender and the selected categories
+- Measure the representation of unique female speakers for each of the medias 
+- Proceed with some unclustered analysis in order to visualize what topics females really talk about and whether it is cnosistent with our previous analysis
 
 
 **Results**
 
-Present results according to the information that needs to be transmitted:
-- Geographical trends: could present a world map indicating the male-female difference for the countries studied. We could also add the category where high differences were found, or ones where proportions are male/female seem to be changing over the years.
-- Media topics: show how quotes are distributed amongst genders within a certain subject.
-- To these visualisations, we could add extra statistics on the average length of the quote or age of the speaker.
-- Finally, we could present detailed results from the most popular/respected sources.
+The main results may be found in [the datastory](https://lisalrt.github.io/females-in-media/).
+Other interesting results may be found in the notebook `M3_final_analysis.ipynb` with some interpretations
 
 
 
 ## Team contributions 
 
-Lisa: Plotting graphs during data analysis, preliminary data analysis;
-Arhtur: 
-Lavinia
-Sélène and Lisa: Writing up the report or the data story, preparing the final presentation.
+Lisa: Plotting graphs during data analysis, preliminary data analysis, webmaster, datastory
+
+Sélène: Retrieving tags, webmaster, datastory, 
+
+Lavinia:Data scrapping from wikidata, part 2 of the data story, README
+
+Arhtur: Code for part 1 of the data story
+
+
+
+
 
 
