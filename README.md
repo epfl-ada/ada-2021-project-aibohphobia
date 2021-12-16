@@ -36,7 +36,7 @@ The goal is to highlight possible trends about which media sources quote females
 
 ## Dataset
 
-We use the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 2016-2020. For each quote, it includes information on the speaker (along with their qid from [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)) as well as the quote source.
+We use the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 2015-2020. For each quote, it includes information on the speaker (along with their qid from [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)) as well as the quote source.
 
 The cleaned data is saved on this [drive](https://drive.google.com/drive/folders/1bP67GGJyPXD7bCr5c6f7O2fM40AWpXJN?usp=sharing). A `README_DRIVE.md` in the folder precises the data contained.
 
