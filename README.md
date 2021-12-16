@@ -2,14 +2,7 @@
 
 
 TODO for M3 
-- [ ] Upload drive readme
-- [x] Merge the final df, Lavi and Art 
-- [x] Make sure that code is documented
 - [ ] Upgreade the research questions here
-- [x] Link this github to the website for easy access
-- [x] List who did what 
-- [x] Make folders for milestone 2 and 3
-
 
 ## Contents
 
