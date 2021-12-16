@@ -2,14 +2,7 @@
 
 
 TODO for M3 
-- [ ] Upload drive readme
-- [ ] Merge the final df, Lavi and Art 
-- [ ] Make sure that code is documented
 - [ ] Upgreade the research questions here
-- [x] Link this github to the website for easy access
-- [ ] List who did what 
-- [x] Make folders for milestone 2 and 3
-
 
 ## Contents
 
@@ -126,16 +119,10 @@ Other interesting results may be found in the notebook `M3_final_analysis.ipynb`
 
 ## Team contributions 
 
-Lisa: Plotting graphs during data analysis, preliminary data analysis, webmaster, datastory
+Lisa: Plotting graphs during data analysis (M2), preliminary data analysis (M2), webmaster (M3), datastory (M3)
 
-Sélène: Retrieving tags, webmaster, datastory, 
+Sélène: Retrieving tags (M2), webmaster (M3), datastory (M3), LDA(M3)
 
-Lavinia:Data scrapping from wikidata, part 2 of the data story, README
+Lavinia: Data scrapping from wikidata (M2), code of and interpretation part 2 of the data story (M3), README'S
 
-Arhtur: Code for part 1 of the data story
-
-
-
-
-
-
+Arhtur: Code and interpretation for part 1 of the data story (M3), preliminary data analysis (M2)
