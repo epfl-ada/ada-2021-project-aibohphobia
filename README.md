@@ -27,7 +27,7 @@ TODO for M3
 :file_folder: Milestone_3: Files for Milestone 3
 
   |--- **M3_final_analysis.ipynb**: Final notebook extending the M2 pre-processing and initial analysis `M3_final_analysis.ipynb`\
-  |--- **M3_utils.py**: 
+  |--- **M3_utils.py**: Python file with functions used in the analysis
 
 ## Abstract 
 
