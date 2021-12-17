@@ -1,21 +1,7 @@
 # Underrepresentation of females in media: a myth or a truth?
 
-
-TODO for M3 
-- [ ] Upgreade the research questions here
-
-## Contents
-
-* [Project directory](#project-directory)
-* [Abstract](#abstract)
-* [Dataset](#dataset)
-* [Research questions](#research-questions)
-* [Additional datasets](#additional-datasets)
-* [Methods](#methods)
-* [Team contributions](#team-contributions)
-
-
 ## Project directory 
+
 :file_folder: Milestone_2: Updated files given for Milestone 2
 
   |--- **M2_pre_processing.ipynb**: Notebook to clean and organize data for the project.\
@@ -32,22 +18,23 @@ TODO for M3
 ## Abstract 
 
 Females' equal participation in all facets of society is a fundamental human right. Yet, around the world, they have historically been underrepresented, including in mainstream media. [Studies](https://www.tandfonline.com/doi/full/10.1080/23257962.2016.1260445) have shown that representation is important for inspiration and has positive feedback in spreading gender equality. We therefore want to explore whether media coverage gives the same possibilities regardless of gender.
-The goal is to highlight possible trends about which media sources quote females and analyse their proportion of published quotations in comparison to males. Additionally, certain domains are known to have a gender gap. This study is therefore interested in understanding which fields present differences between genders, may it be politics, sports, culture or others. The difference between countries, year and media source will also be analysed as well as the impact of such factors on the length and frequency of female quotes.
+The goal is to highlight possible trends about which media sources quote females and analyse their proportion of published quotations in comparison to males. Additionally, certain domains are known to have a gender gap. This study is therefore interested in understanding which fields present differences between genders, may it be politics, sports, culture or others. The difference between media's countries of origin, year and media source will also be analysed as well as the impact of such factors on the length and frequency of female quotes.
 
 ## Dataset
 
-We use the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 2015-2020. For each quote, it includes information on the speaker (along with their qid from [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)) as well as the quote source.
+We use the Quotebank [dataset](https://zenodo.org/record/4277311) for the years 2015-2020. For each quote, it includes information on the speaker (along with their qid from [wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)) and the quote source.
 
 The cleaned data is saved on this [drive](https://drive.google.com/drive/folders/1bP67GGJyPXD7bCr5c6f7O2fM40AWpXJN?usp=sharing). A `README_DRIVE.md` in the folder precises the data contained.
 
 ## Research questions 
 
-Throughout this study we aim to answer a main question: "Is the representation equal between males and females in media?". The following questions will guide us through the project:
+Our main question is: "Is the representation equal between males and females in media?". The following questions guide us through the project:
 
-- How does the distribution of quotes based on gender vary across countries, topics, location and time?
+- How does the distribution of quotes based on gender vary across countries and time?
+- How is the age of the speakers distributed depending on gender?
+- What if only few females are very often quoted? Look at the distinct speakers!
 - Are males more likely to be quoted in highly respected media?
-- Is there a difference in how females/males at a certain age are quoted?
-
+- Focusing on "Entertainment" and "Culture", are they differences between the media sources?
 
 ## Additional datasets
 
@@ -61,15 +48,15 @@ Throughout this study we aim to answer a main question: "Is the representation e
 **Data filtering**
 
 We limited the dataset by:
-- Computed the number of occurrences of each media source (by extracting the site name from the URL)
-- Selected the top 116 medias based on this [list](https://www.4imn.com/top200/)
-- Filtered the data to keep only quotes that were mentioned in this top 116
+- Computing the number of occurrences of each media source (by extracting the site name from the URL)
+- Selecting the top 116 medias based on this [list](https://www.4imn.com/top200/)
+- Filtering the data to keep only quotes that were mentioned in this top 116
 
 **Data cleaning:**
 
 The data is cleaned by: 
 - Removing "None" speakers 
-- Removing speakers havong a low porbability (50% threshold)
+- Removing speakers having a low porbability (50% threshold)
 - Verifying quotes are non empty 
 
 **Additional data extraction**
@@ -92,37 +79,33 @@ Using the URL and data from Wikidata:
 - the difference in ages of quoted persons (regarding gender) is statistically significant.
 
 **Deeper analysis**
-For our final data story we split the story in *two*. 
+splitted in 2 parts: 
 
-The *first part* looks at the reprensentation of females in countries and then focus on three English speaking countries and digs into:
+1. Looks at the reprensentation of females in countries and then focus on three English speaking countries and digs into:
 - the evolution over the years
 - the number of unique speakers and the most quoted speakers
 - the age distribution between males and females for each of the selected countries
 - the media that quote the top speakers
 
-The *second part* dives into the representation of women within a selected list of respected and popular media. 
-- Distribution of females over the years for the two type of medias
-- Looking at what females talk about in the respective media
+2. Dives into the representation of women within a selected list of respected and popular media. 
+- Distribution of females over the years for the two type of media
 - Dig further into the categories were females are the most quoted 
-- Assess the divesity of speakers within each gender
+- Assess the diversity of speakers within each gender
 - Evaluate the quote length based on gender and the selected categories
 - Measure the representation of unique female speakers for each of the medias 
-- Proceed with some unclustered analysis in order to visualize what topics females really talk about and whether it is cnosistent with our previous analysis
-
+- Proceed with some unclustered analysis in order to visualize what topics females really talk about and whether it is consistent with our previous analysis
 
 **Results**
 
-The main results may be found in [the datastory](https://lisalrt.github.io/females-in-media/).
-Other interesting results may be found in the notebook `M3_final_analysis.ipynb` with some interpretations
-
-
+The main results can be found on [the datastory](https://lisalrt.github.io/females-in-media/).
+Other interesting results are in the notebook `M3_final_analysis.ipynb`.
 
 ## Team contributions 
 
-Lisa: Plotting graphs during data analysis (M2), preliminary data analysis (M2), webmaster (M3), datastory (M3)
+Lisa: Preliminary data analysis (M2), webmaster (M3), datastory (M3)
 
 Sélène: Retrieving tags (M2), webmaster (M3), datastory (M3), LDA(M3)
 
-Lavinia: Data scrapping from wikidata (M2), code of and interpretation part 2 of the data story (M3), README'S
+Lavinia: Data scrapping from wikidata (M2), code and interpretation of part 2 of the data story (M3), README'S
 
 Arhtur: Code and interpretation for part 1 of the data story (M3), preliminary data analysis (M2)
